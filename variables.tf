@@ -77,6 +77,6 @@ variable "hl7_v2_stores" {
             member = string
         }))
     }))
-    description = "Datastore that conforms to the HL7 V2 ((https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
+    description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
     default = []
 }
