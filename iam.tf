@@ -1,4 +1,3 @@
-
 locals {
   all_dicom_iam_members = flatten([
     for s in var.dicom_stores : [
