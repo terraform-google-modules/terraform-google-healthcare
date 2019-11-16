@@ -15,68 +15,67 @@
  */
 
 variable "name" {
-    type = string
-    description = "The resource name for the Dataset.s"
+  type        = string
+  description = "The resource name for the Dataset.s"
 }
 
 variable "project" {
-    type = string
-    description = "The ID of the project in which the resource belongs. If it is not provided, the provider project is used."
-    default = null
+  type        = string
+  description = "The ID of the project in which the resource belongs."
 }
 
 variable "location" {
-    type = string
-    description = "The location for the Dataset."
+  type        = string
+  description = "The location for the Dataset."
 }
 
 variable "time_zone" {
-    type = string
-    description = "The default timezone used by this dataset."
-    default = null
+  type        = string
+  description = "The default timezone used by this dataset."
+  default     = null
 }
 
 variable "iam_members" {
-    type = list(object({
-        role = string
-        member = string
-    }))
-    description = "Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved."
-    default = []
+  type = list(object({
+    role   = string
+    member = string
+  }))
+  description = "Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved."
+  default     = []
 }
 
 variable "dicom_stores" {
-    type = list(object({
-        name = string
-        iam_members = list(object({
-            role = string
-            member = string
-        }))
+  type = list(object({
+    name = string
+    iam_members = list(object({
+      role   = string
+      member = string
     }))
-    description = "Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange."
-    default = []
+  }))
+  description = "Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange."
+  default     = []
 }
 
 variable "fhir_stores" {
-    type = list(object({
-        name = string
-        iam_members = list(object({
-            role = string
-            member = string
-        }))
+  type = list(object({
+    name = string
+    iam_members = list(object({
+      role   = string
+      member = string
     }))
-    description = "Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange."
-    default = []
+  }))
+  description = "Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange."
+  default     = []
 }
 
 variable "hl7_v2_stores" {
-    type = list(object({
-        name = string
-        iam_members = list(object({
-            role = string
-            member = string
-        }))
+  type = list(object({
+    name = string
+    iam_members = list(object({
+      role   = string
+      member = string
     }))
-    description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
-    default = []
+  }))
+  description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
+  default     = []
 }
