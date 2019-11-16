@@ -22,17 +22,6 @@ resource "google_healthcare_dataset" "dataset" {
   time_zone = var.time_zone
 }
 
-resource "google_healthcare_dataset_iam_member" "dataset_iam_members" {
-  provider = google-beta
-  for_each = {
-    for m in var.iam_members :
-    "${m.role} ${m.member}" => m
-  }
-  dataset_id = google_healthcare_dataset.dataset.id
-  role       = each.value.role
-  member     = each.value.member
-}
-
 resource "google_healthcare_dicom_store" "dicom_stores" {
   provider = google-beta
   for_each = {
