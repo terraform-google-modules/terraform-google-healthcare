@@ -14,11 +14,40 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = "~> 0.12.0"
+resource "google_healthcare_dataset" "dataset" {
+  provider  = google-beta
+  name      = var.name
+  project   = var.project
+  location  = var.location
+  time_zone = var.time_zone
 }
 
-resource "google_storage_bucket" "main" {
-  project = var.project_id
-  name    = var.bucket_name
+resource "google_healthcare_dicom_store" "dicom_stores" {
+  provider = google-beta
+  for_each = {
+    for s in var.dicom_stores :
+    s.name => s
+  }
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
+}
+
+resource "google_healthcare_fhir_store" "fhir_stores" {
+  provider = google-beta
+  for_each = {
+    for s in var.fhir_stores :
+    s.name => s
+  }
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
+}
+
+resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
+  provider = google-beta
+  for_each = {
+    for s in var.hl7_v2_stores :
+    s.name => s
+  }
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
 }
