@@ -16,7 +16,7 @@
 
 variable "name" {
   type        = string
-  description = "The resource name for the Dataset.s"
+  description = "The resource name for the Dataset."
 }
 
 variable "project" {
