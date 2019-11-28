@@ -53,19 +53,19 @@ variable "iam_members" {
 #    role: string (required)
 #    member: string (required)
 variable "dicom_stores" {
-  type = any
+  type        = any
   description = "Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange."
-  default = []
+  default     = []
 }
 
 variable "fhir_stores" {
-  type = list
+  type        = list
   description = "Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange."
-  default = []
+  default     = []
 }
 
 variable "hl7_v2_stores" {
-  type = list
+  type        = list
   description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
-  default = []
+  default     = []
 }
