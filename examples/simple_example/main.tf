@@ -19,8 +19,23 @@ provider "google" {
 }
 
 module "healthcare" {
-  source = "../.."
+  source = "../../"
 
-  project_id  = var.project_id
-  bucket_name = var.bucket_name
+  name = "example-dataset"
+  project = var.project
+  location = "us-central1"
+  iam_members = [
+    { role = "roles/healthcare.datasetAdmin", member = "group:example-dataset-admins@example.com" },
+  ]
+  dicom_stores = [
+    {
+      name = "example-dicom-a"
+    },
+    {
+      name = "example-dicom-b"
+      iam_members = [
+          { role = "roles/healthcare.dicomEditor", member = "user:example-dicom-b-editors@example.com" },
+      ]
+    }
+  ]
 }

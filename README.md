@@ -1,10 +1,6 @@
 # terraform-google-healthcare
 
-This module was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template/), which by default generates a module that simply creates a GCS bucket. As the module develops, this README should be updated.
-
-The resources/services/activations/deletions that this module will create/trigger are:
-
-- Create a GCS bucket with the provided name
+This module handles opinionated Google Cloud Platform Healthcare datasets and stores.
 
 ## Usage
 
@@ -15,8 +11,12 @@ module "healthcare" {
   source  = "terraform-google-modules/healthcare/google"
   version = "~> 0.1"
 
-  project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
+  project  = "<PROJECT ID>"
+  name = "example-dataset"
+  location = "us-central1"
+  fhir_stores = [{
+    name = "example-fhir-store"
+  }]
 }
 ```
 
@@ -28,14 +28,14 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| bucket\_name | The name of the bucket to create | string | n/a | yes |
-| project\_id | The project ID to deploy to | string | n/a | yes |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| bucket\_name |  |
+| dicom\_stores | Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange. | object | `<list>` | no |
+| fhir\_stores | Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange. | object | `<list>` | no |
+| hl7\_v2\_stores | Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange. | object | `<list>` | no |
+| iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | object | `<list>` | no |
+| location | The location for the Dataset. | string | n/a | yes |
+| name | The resource name for the Dataset. | string | n/a | yes |
+| project | The ID of the project in which the resource belongs. | string | n/a | yes |
+| time\_zone | The default timezone used by this dataset. | string | `"null"` | no |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
@@ -55,7 +55,10 @@ The following dependencies must be available:
 A service account with the following roles must be used to provision
 the resources of this module:
 
-- Storage Admin: `roles/storage.admin`
+- Healthcare Dataset Admin: `roles/healthcare.datasetAdmin`
+- Healthcare DICOM Admin: `roles/healthcare.dicomStoreAdmin`
+- Healthcare FHIR Admin: `roles/healthcare.fhirStoreAdmin`
+- Healthcare HL7 V2 Admin: `roles/healthcare.hl7V2StoreAdmin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -66,7 +69,7 @@ service account with the necessary roles applied.
 A project with the following APIs enabled must be used to host the
 resources of this module:
 
-- Google Cloud Storage JSON API: `storage-api.googleapis.com`
+- Google Cloud Healthcare API: `healthcare.googleapis.com`
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.

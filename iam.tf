@@ -17,7 +17,7 @@
 locals {
   all_dicom_iam_members = flatten([
     for s in var.dicom_stores : [
-      for m in s.iam_members : {
+      for m in lookup(s, "iam_members", []) : {
         store_name = s.name
         role       = m.role
         member     = m.member
@@ -26,7 +26,7 @@ locals {
   ])
   all_fhir_iam_members = flatten([
     for s in var.fhir_stores : [
-      for m in s.iam_members : {
+      for m in lookup(s, "iam_members", []) : {
         store_name = s.name
         role       = m.role
         member     = m.member
@@ -35,7 +35,7 @@ locals {
   ])
   all_hl7_v2_iam_members = flatten([
     for s in var.hl7_v2_stores : [
-      for m in s.iam_members : {
+      for m in lookup(s, "iam_members", []) : {
         store_name = s.name
         role       = m.role
         member     = m.member

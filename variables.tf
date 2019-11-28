@@ -44,38 +44,28 @@ variable "iam_members" {
   default     = []
 }
 
+# TODO(https://github.com/hashicorp/terraform/issues/19898): Convert these
+# to list of objects once optional variables are supported.
+
+# All stores are list of objects supporting the following fields:
+#  name: string (required)
+#  iam_members: list of objects (optional)
+#    role: string (required)
+#    member: string (required)
 variable "dicom_stores" {
-  type = list(object({
-    name = string
-    iam_members = list(object({
-      role   = string
-      member = string
-    }))
-  }))
+  type = any
   description = "Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange."
-  default     = []
+  default = []
 }
 
 variable "fhir_stores" {
-  type = list(object({
-    name = string
-    iam_members = list(object({
-      role   = string
-      member = string
-    }))
-  }))
+  type = list
   description = "Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange."
-  default     = []
+  default = []
 }
 
 variable "hl7_v2_stores" {
-  type = list(object({
-    name = string
-    iam_members = list(object({
-      role   = string
-      member = string
-    }))
-  }))
+  type = list
   description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
-  default     = []
+  default = []
 }
