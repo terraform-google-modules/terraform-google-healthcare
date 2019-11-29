@@ -34,7 +34,7 @@ module "healthcare" {
     {
       name = "example-dicom-b"
       iam_members = [
-          { role = "roles/healthcare.dicomEditor", member = "user:example-dicom-b-editors@example.com" },
+          { role = "roles/healthcare.dicomEditor", member = "serviceAccount:example-dicom-b-uploader@example-project.gserviceaccount.com" },
       ]
     }
   ]
