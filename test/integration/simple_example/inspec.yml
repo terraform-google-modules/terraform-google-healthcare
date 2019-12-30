@@ -1,12 +1,17 @@
 name: simple_example
-depends:
-  - name: inspec-gcp
-    git: https://github.com/inspec/inspec-gcp.git
-    tag: v0.10.0
 attributes:
-  - name: project_id
+  - name: project
     required: true
     type: string
-  - name: bucket_name
+  - name: dataset_name
+    required: true
+    type: string
+  - name: group_email
+    required: true
+    type: string
+  - name: sa_email
+    required: true
+    type: string
+  - name: user_email
     required: true
     type: string

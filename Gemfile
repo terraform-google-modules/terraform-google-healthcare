@@ -12,10 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-control "gcp" do
-  title "GCP Resources"
-
-  describe google_storage_bucket(name: attribute("bucket_name")) do
-    it { should exist }
-  end
+source 'https://rubygems.org/' do
+  gem 'kitchen-terraform', '~> 4.9'
 end

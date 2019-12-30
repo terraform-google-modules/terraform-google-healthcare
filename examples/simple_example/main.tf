@@ -21,11 +21,12 @@ provider "google" {
 module "healthcare" {
   source = "../../"
 
-  name = "example-dataset"
-  project = var.project
+  name     = var.name
+  project  = var.project
   location = "us-central1"
   iam_members = [
-    { role = "roles/healthcare.datasetAdmin", member = "group:example-dataset-admins@example.com" },
+    { role = "roles/healthcare.datasetAdmin", member = "group:${var.group_email}" },
+    { role = "roles/healthcare.datasetViewer", member = "user:${var.user_email}" },
   ]
   dicom_stores = [
     {
@@ -34,7 +35,7 @@ module "healthcare" {
     {
       name = "example-dicom-b"
       iam_members = [
-          { role = "roles/healthcare.dicomEditor", member = "serviceAccount:example-dicom-b-uploader@example-project.gserviceaccount.com" },
+        { role = "roles/healthcare.dicomEditor", member = "serviceAccount:${var.sa_email}" },
       ]
     }
   ]

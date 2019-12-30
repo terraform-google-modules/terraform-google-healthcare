@@ -20,13 +20,16 @@ provider "random" {
 
 resource "random_pet" "main" {
   length    = 1
-  prefix    = "simple-example"
+  prefix    = "simple-example-dataset"
   separator = "-"
 }
 
 module "example" {
   source = "../../../examples/simple_example"
 
-  project_id  = var.project_id
-  bucket_name = random_pet.main.id
+  project     = var.project
+  name        = random_pet.main.id
+  group_email = var.group_email
+  sa_email    = var.sa_email
+  user_email  = var.user_email
 }

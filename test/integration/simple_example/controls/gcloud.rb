@@ -15,9 +15,41 @@
 control "gcloud" do
   title "gcloud"
 
-  describe command("gcloud --project=#{attribute("project_id")} services list --enabled") do
+  describe command("gcloud --project=#{attribute("project")} services list --enabled") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should match "storage-api.googleapis.com" }
+    its(:stdout) { should match "healthcare.googleapis.com" }
   end
+
+  describe command("gcloud --project=#{attribute("project")} beta healthcare datasets list") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should match "#{attribute("dataset_name")}" }
+  end
+
+  describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores list --dataset=#{attribute("dataset_name")}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should match "example-dicom-a" }
+    its(:stdout) { should match "example-dicom-b" }
+  end
+
+  describe command("gcloud --project=#{attribute("project")} beta healthcare datasets get-iam-policy #{attribute("dataset_name")} --format=\"value(bindings)\"") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should eq "{'members': ['group:#{attribute("group_email")}'], 'role': 'roles/healthcare.datasetAdmin'};{'members': ['user:#{attribute("user_email")}'], 'role': 'roles/healthcare.datasetViewer'}\n" }
+  end
+
+  describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores get-iam-policy example-dicom-a --dataset=#{attribute("dataset_name")} --format=\"value(bindings)\"") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should eq "\n" }
+  end
+
+  describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores get-iam-policy example-dicom-b --dataset=#{attribute("dataset_name")} --format=\"value(bindings)\"") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should eq "{'members': ['serviceAccount:#{attribute("sa_email")}'], 'role': 'roles/healthcare.dicomEditor'}\n" }
+  end
+
 end
