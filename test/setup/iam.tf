@@ -16,14 +16,17 @@
 
 locals {
   int_required_roles = [
-    "roles/owner"
+    "roles/healthcare.datasetAdmin",
+    "roles/healthcare.dicomStoreAdmin",
+    "roles/healthcare.fhirStoreAdmin",
+    "roles/healthcare.hl7V2StoreAdmin",
   ]
 }
 
 resource "google_service_account" "int_test" {
   project      = module.project.project_id
-  account_id   = "ci-account"
-  display_name = "ci-account"
+  account_id   = "ci-healthcare"
+  display_name = "ci-healthcare"
 }
 
 resource "google_project_iam_member" "int_test" {
