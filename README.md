@@ -23,22 +23,6 @@ module "healthcare" {
 Functional examples are included in the
 [examples](./examples/) directory.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| dicom\_stores | Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange. | object | `<list>` | no |
-| fhir\_stores | Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange. | object | `<list>` | no |
-| hl7\_v2\_stores | Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange. | object | `<list>` | no |
-| iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | object | `<list>` | no |
-| location | The location for the Dataset. | string | n/a | yes |
-| name | The resource name for the Dataset. | string | n/a | yes |
-| project | The ID of the project in which the resource belongs. | string | n/a | yes |
-| time\_zone | The default timezone used by this dataset. | string | `"null"` | no |
-
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 ## Requirements
 
 These sections describe requirements for using this module.
@@ -74,12 +58,27 @@ resources of this module:
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| dicom\_stores | Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange. | any | `<list>` | no |
+| fhir\_stores | Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange. | any | `<list>` | no |
+| hl7\_v2\_stores | Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange. | any | `<list>` | no |
+| iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | object | `<list>` | no |
+| location | The location for the Dataset. | string | n/a | yes |
+| name | The resource name for the Dataset. | string | n/a | yes |
+| project | The ID of the project in which the resource belongs. | string | n/a | yes |
+| time\_zone | The default timezone used by this dataset. | string | `"null"` | no |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Contributing
 
 Refer to the [contribution guidelines](./CONTRIBUTING.md) for
 information on contributing to this module.
 
-[iam-module]: https://registry.terraform.io/modules/terraform-google-modules/iam/google
 [project-factory-module]: https://registry.terraform.io/modules/terraform-google-modules/project-factory/google
 [terraform-provider-gcp]: https://www.terraform.io/docs/providers/google/index.html
 [terraform]: https://www.terraform.io/downloads.html
