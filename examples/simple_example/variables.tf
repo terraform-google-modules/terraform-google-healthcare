@@ -38,3 +38,8 @@ variable "user_email" {
   type        = string
   description = "Email for user to receive roles (Ex. user@example.com)"
 }
+
+variable "pubsub_topic" {
+  type        = string
+  description = "Pubsub Topic name"
+}

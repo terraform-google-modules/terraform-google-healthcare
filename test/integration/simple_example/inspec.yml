@@ -15,3 +15,5 @@ attributes:
   - name: user_email
     required: true
     type: string
+  - name: pubsub_topic
+    required: true
