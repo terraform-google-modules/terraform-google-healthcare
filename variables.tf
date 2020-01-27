@@ -53,7 +53,8 @@ variable "iam_members" {
 #  iam_members: list of objects (optional)
 #    role: string (required)
 #    member: string (required)
-#  pubsub_topic: string (optional)
+#  notification_config: object (optional)
+#    pubsub_topic: string (required)
 variable "dicom_stores" {
   type        = any
   description = "Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange."

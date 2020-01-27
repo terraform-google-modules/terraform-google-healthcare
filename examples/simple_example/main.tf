@@ -30,8 +30,10 @@ module "healthcare" {
   ]
   dicom_stores = [
     {
-      name         = "example-dicom-a"
-      pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+      name = "example-dicom-a"
+      notification_config = {
+        pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+      }
     },
     {
       name = "example-dicom-b"
@@ -42,8 +44,10 @@ module "healthcare" {
   ]
   fhir_stores = [
     {
-      name         = "example-fhir"
-      pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+      name = "example-fhir"
+      notification_config = {
+        pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+      }
       iam_members = [
         { role = "roles/healthcare.fhirResourceEditor", member = "serviceAccount:${var.sa_email}" },
       ]
@@ -51,8 +55,10 @@ module "healthcare" {
   ]
   hl7_v2_stores = [
     {
-      name         = "example-hl7v2"
-      pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+      name = "example-hl7v2"
+      notification_config = {
+        pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+      }
       iam_members = [
         { role = "roles/healthcare.hl7V2Editor", member = "serviceAccount:${var.sa_email}" },
       ]

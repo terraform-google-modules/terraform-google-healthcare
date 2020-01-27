@@ -22,7 +22,9 @@ module "healthcare" {
   }]
   fhir_stores = [{
     name         = "example-fhir-store"
-    pubsub_topic = "projects/<PROJECT_ID>/topics/example_topic"
+    notification_config = {
+      pubsub_topic = "projects/<PROJECT_ID>/topics/example_topic"
+    }
   }]
 }
 ```
