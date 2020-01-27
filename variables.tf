@@ -49,7 +49,7 @@ variable "iam_members" {
 
 # All stores are list of objects supporting the following fields:
 #  name: string (required)
-#  dataset: string(required)
+#  dataset: string (required)
 #  iam_members: list of objects (optional)
 #    role: string (required)
 #    member: string (required)
