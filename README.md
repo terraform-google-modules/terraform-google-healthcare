@@ -11,11 +11,20 @@ module "healthcare" {
   source  = "terraform-google-modules/healthcare/google"
   version = "~> 0.1"
 
-  project  = "<PROJECT ID>"
-  name = "example-dataset"
+  project  = "<PROJECT_ID>"
+  name     = "example-dataset"
   location = "us-central1"
+  dicom_stores = [{
+    name = "example-dicom-store"
+    iam_members = [
+      { role = "roles/healthcare.dicomEditor", member = "user:example@domain.com" }
+    ]
+  }]
   fhir_stores = [{
-    name = "example-fhir-store"
+    name         = "example-fhir-store"
+    notification_config = {
+      pubsub_topic = "projects/<PROJECT_ID>/topics/example_topic"
+    }
   }]
 }
 ```
@@ -48,12 +57,20 @@ The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
 service account with the necessary roles applied.
 
+To allow messages to be published from the Cloud Healthcare API to Pub/Sub,
+you must add the `roles/pubsub.publisher` role to your project's [Cloud Healthcare
+Service Agent service account](https://cloud.google.com/healthcare/docs/how-tos/controlling-access-other-products#the_cloud_healthcare_service_agent).
+
 ### APIs
 
 A project with the following APIs enabled must be used to host the
 resources of this module:
 
 - Google Cloud Healthcare API: `healthcare.googleapis.com`
+
+To allow messages to be published from the Cloud Healthcare API to Pub/Sub,
+the following API also needs to be enabled:
+- Google Pub/Sub API: `pubsub.googleapis.com`
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.

@@ -38,3 +38,8 @@ output "user_email" {
   description = "Email for user that received roles (Ex. user@example.com)"
   value       = var.user_email
 }
+
+output "pubsub_topic" {
+  description = "Pubsub Topic name"
+  value       = var.pubsub_topic
+}
