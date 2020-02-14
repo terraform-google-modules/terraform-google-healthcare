@@ -44,7 +44,8 @@ module "healthcare" {
   ]
   fhir_stores = [
     {
-      name = "example-fhir"
+      name    = "example-fhir"
+      version = "R4"
       notification_config = {
         pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
       }

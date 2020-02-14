@@ -28,14 +28,17 @@ resource "google_healthcare_dicom_store" "dicom_stores" {
     for s in var.dicom_stores :
     s.name => s
   }
-  name = each.value.name
+
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
+
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
     content {
       pubsub_topic = lookup(each.value.notification_config, "pubsub_topic", "")
     }
   }
-  dataset = google_healthcare_dataset.dataset.id
+
 }
 
 resource "google_healthcare_fhir_store" "fhir_stores" {
@@ -44,14 +47,17 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
     for s in var.fhir_stores :
     s.name => s
   }
-  name = each.value.name
+
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
+  version = each.value.version
+
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
     content {
       pubsub_topic = lookup(each.value.notification_config, "pubsub_topic", "")
     }
   }
-  dataset = google_healthcare_dataset.dataset.id
 }
 
 resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
@@ -60,12 +66,14 @@ resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
     for s in var.hl7_v2_stores :
     s.name => s
   }
-  name = each.value.name
+
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
+
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
     content {
       pubsub_topic = lookup(each.value.notification_config, "pubsub_topic", "")
     }
   }
-  dataset = google_healthcare_dataset.dataset.id
 }
