@@ -31,6 +31,7 @@ resource "google_healthcare_dicom_store" "dicom_stores" {
 
   name    = each.value.name
   dataset = google_healthcare_dataset.dataset.id
+  labels  = lookup(each.value, "labels", null)
 
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
@@ -51,6 +52,7 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
   name    = each.value.name
   dataset = google_healthcare_dataset.dataset.id
   version = each.value.version
+  labels  = lookup(each.value, "labels", null)
 
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
@@ -69,6 +71,7 @@ resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
 
   name    = each.value.name
   dataset = google_healthcare_dataset.dataset.id
+  labels  = lookup(each.value, "labels", null)
 
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
