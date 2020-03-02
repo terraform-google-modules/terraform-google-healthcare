@@ -22,6 +22,7 @@ module "healthcare" {
   }]
   fhir_stores = [{
     name         = "example-fhir-store"
+    version      = "R4"
     notification_config = {
       pubsub_topic = "projects/<PROJECT_ID>/topics/example_topic"
     }

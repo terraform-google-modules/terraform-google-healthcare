@@ -61,9 +61,11 @@ variable "dicom_stores" {
   default     = []
 }
 
+# Extra fields for fhir_stores:
+#  version: string (required)
 variable "fhir_stores" {
   type        = any
-  description = "Datastore that conforms to the FHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information exchange."
+  description = "Datastore that conforms to the FHIR standard for Healthcare information exchange."
   default     = []
 }
 
