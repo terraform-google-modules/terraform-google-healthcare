@@ -15,7 +15,7 @@
  */
 
 provider "google" {
-  version = "~> 2.0"
+  version = "~> 3.0"
 }
 
 module "healthcare" {
@@ -57,9 +57,9 @@ module "healthcare" {
   hl7_v2_stores = [
     {
       name = "example-hl7v2"
-      notification_config = {
+      notification_configs = [{
         pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
-      }
+      }]
       iam_members = [
         { role = "roles/healthcare.hl7V2Editor", member = "serviceAccount:${var.sa_email}" },
       ]
