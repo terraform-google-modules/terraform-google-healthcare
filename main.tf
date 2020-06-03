@@ -34,7 +34,7 @@ resource "google_healthcare_dicom_store" "dicom_stores" {
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
     content {
-      pubsub_topic = lookup(notification_config, "pubsub_topic", "")
+      pubsub_topic = notification_config.value.pubsub_topic
     }
   }
 
@@ -54,7 +54,7 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
     content {
-      pubsub_topic = lookup(notification_config, "pubsub_topic", "")
+      pubsub_topic = notification_config.value.pubsub_topic
     }
   }
 }
@@ -73,7 +73,7 @@ resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
   dynamic "notification_configs" {
     for_each = lookup(each.value, "notification_configs", [])
     content {
-      pubsub_topic = lookup(notification_configs, "pubsub_topic", "")
+      pubsub_topic = notification_configs.value.pubsub_topic
     }
   }
 }
