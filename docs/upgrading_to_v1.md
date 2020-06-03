@@ -16,8 +16,9 @@ module "healthcare" {
 -   version = "~> 0.1"
 +   version = "~> 1.0"
 
-    name    = "example-dataset"
-    project = "example-project"
+    name     = "example-dataset"
+    project  = "example-project"
+    location = "us-central1"
 
     hl7_v2_stores = [{
       name = "example-hl7v2"
