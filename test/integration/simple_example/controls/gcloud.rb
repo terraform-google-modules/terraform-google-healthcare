@@ -51,7 +51,13 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare datasets get-iam-policy example-healthcare-dataset --format=\"value(bindings)\"") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "{'members': ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com'], 'role': 'roles/healthcare.datasetAdmin'}\n" }
+
+    let!(:data) do
+      expect(data).to eq ({
+        "role": "roles/healthcare.datasetAdmin",
+        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
+      })
+    end
   end
 
   describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores get-iam-policy example-dicom-a --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
@@ -63,7 +69,13 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores get-iam-policy example-dicom-b --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "{'members': ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com'], 'role': 'roles/healthcare.dicomEditor'}\n" }
+
+    let!(:data) do
+      expect(data).to eq ({
+        "role": "roles/healthcare.dicomEditor",
+        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
+      })
+    end
   end
 
   # FHIR stores
@@ -82,7 +94,13 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare fhir-stores get-iam-policy example-fhir --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "{'members': ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com'], 'role': 'roles/healthcare.fhirResourceEditor'}\n" }
+
+    let!(:data) do
+      expect(data).to eq ({
+        "role": "roles/healthcare.fhirResourceEditor",
+        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
+      })
+    end
   end
 
   # HL7V2 Stores
@@ -101,7 +119,13 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare hl7v2-stores get-iam-policy example-hl7v2 --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "{'role': 'roles/healthcare.hl7V2Editor', 'members': ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']}\n" }
+
+    let!(:data) do
+      expect(data).to eq ({
+        "role": "roles/healthcare.hl7V2Editor",
+        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
+      })
+    end
   end
 
 
