@@ -1,6 +1,6 @@
 # Upgrading to v1.0
 
-The vv.0 release of *healthcare* is a backwards incompatible release.
+The v1.0 release of *healthcare* is a backwards incompatible release.
 
 ## API
 
