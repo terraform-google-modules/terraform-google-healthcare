@@ -25,7 +25,7 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare datasets list") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should match "#{attribute("dataset_name")}" }
+    its(:stdout) { should match "example-healthcare-dataset" }
   end
 
   # DICOM stores
@@ -39,7 +39,7 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores list --dataset=#{attribute("dataset_name")} --format=\"value(TOPIC)\" --filter=ID:example-dicom-a") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "projects/xingao/topics/example_topic\n" }
+    its(:stdout) { should eq "projects/#{attribute("project")}/topics/example-topic\n" }
   end
 
   describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores list --dataset=#{attribute("dataset_name")} --format=\"value(TOPIC)\" --filter=ID:example-dicom-b") do
@@ -63,7 +63,7 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores get-iam-policy example-dicom-b --dataset=#{attribute("dataset_name")} --format=\"value(bindings)\"") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "{'members': ['serviceAccount:#{attribute("sa_email")}'], 'role': 'roles/healthcare.dicomEditor'}\n" }
+    its(:stdout) { should eq "{'members': ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com'], 'role': 'roles/healthcare.dicomEditor'}\n" }
   end
 
   # FHIR stores
@@ -76,13 +76,13 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare fhir-stores list --dataset=#{attribute("dataset_name")} --format=\"value(TOPIC)\" --filter=ID:example-fhir") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "projects/xingao/topics/example_topic\n" }
+    its(:stdout) { should eq "projects/#{attribute("project")}/topics/example-topic\n" }
   end
 
   describe command("gcloud --project=#{attribute("project")} beta healthcare fhir-stores get-iam-policy example-fhir --dataset=#{attribute("dataset_name")} --format=\"value(bindings)\"") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "{'members': ['serviceAccount:#{attribute("sa_email")}'], 'role': 'roles/healthcare.fhirResourceEditor'}\n" }
+    its(:stdout) { should eq "{'members': ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com'], 'role': 'roles/healthcare.fhirResourceEditor'}\n" }
   end
 
   # HL7V2 Stores
@@ -95,13 +95,13 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} beta healthcare hl7v2-stores list --dataset=#{attribute("dataset_name")} --format=\"value(TOPIC)\" --filter=ID:example-hl7v2") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "projects/xingao/topics/example_topic\n" }
+    its(:stdout) { should eq "projects/#{attribute("project")}/topics/example-topic\n" }
   end
 
   describe command("gcloud --project=#{attribute("project")} beta healthcare hl7v2-stores get-iam-policy example-hl7v2 --dataset=#{attribute("dataset_name")} --format=\"value(bindings)\"") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should eq "{'members': ['serviceAccount:#{attribute("sa_email")}'], 'role': 'roles/healthcare.hl7V2Editor'}\n" }
+    its(:stdout) { should eq "{'members': ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com'], 'role': 'roles/healthcare.hl7V2Editor'}\n" }
   end
 
 

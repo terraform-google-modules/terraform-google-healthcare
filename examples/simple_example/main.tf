@@ -19,7 +19,7 @@ provider "google" {
 }
 
 resource "google_service_account" "service_account" {
-  account_id = "example-healthcare-sa"
+  account_id = "example-sa"
   project    = var.project
 }
 
@@ -27,7 +27,7 @@ module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "~> 1.3"
 
-  topic      = "example-healthcare-topic"
+  topic      = "example-topic"
   project_id = var.project
 }
 
