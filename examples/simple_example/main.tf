@@ -31,7 +31,7 @@ module "pubsub" {
 }
 
 locals {
-  sa_member = "serviceAccount:${google_service_account.service_account.account_id}@${var.project}.iam.gserviceaccount.com"
+  sa_member    = "serviceAccount:${google_service_account.service_account.account_id}@${var.project}.iam.gserviceaccount.com"
   pubsub_topic = "projects/${var.project}/topics/${module.pubsub.topic}"
 }
 
