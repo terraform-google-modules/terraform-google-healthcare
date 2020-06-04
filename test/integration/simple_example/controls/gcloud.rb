@@ -36,71 +36,11 @@ control "gcloud" do
     its(:stdout) { should match "example-dicom-b" }
   end
 
-  describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores list --dataset=example-healthcare-dataset --format=\"value(TOPIC)\" --filter=ID:example-dicom-a") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-    its(:stdout) { should eq "projects/#{attribute("project")}/topics/example-topic\n" }
-  end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores list --dataset=example-healthcare-dataset --format=\"value(TOPIC)\" --filter=ID:example-dicom-b") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-    its(:stdout) { should eq "\n" }
-  end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare datasets get-iam-policy example-healthcare-dataset --format=\"value(bindings)\"") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-
-    let!(:data) do
-      expect(data).to eq ({
-        "role": "roles/healthcare.datasetAdmin",
-        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
-      })
-    end
-  end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores get-iam-policy example-dicom-a --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-    its(:stdout) { should eq "\n" }
-  end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare dicom-stores get-iam-policy example-dicom-b --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-
-    let!(:data) do
-      expect(data).to eq ({
-        "role": "roles/healthcare.dicomEditor",
-        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
-      })
-    end
-  end
-
   # FHIR stores
   describe command("gcloud --project=#{attribute("project")} beta healthcare fhir-stores list --dataset=example-healthcare-dataset") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
     its(:stdout) { should match "example-fhir" }
-  end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare fhir-stores list --dataset=example-healthcare-dataset --format=\"value(TOPIC)\" --filter=ID:example-fhir") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-    its(:stdout) { should eq "projects/#{attribute("project")}/topics/example-topic\n" }
-  end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare fhir-stores get-iam-policy example-fhir --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-
-    let!(:data) do
-      expect(data).to eq ({
-        "role": "roles/healthcare.fhirResourceEditor",
-        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
-      })
-    end
   end
 
   # HL7V2 Stores
@@ -109,24 +49,4 @@ control "gcloud" do
     its(:stderr) { should eq "" }
     its(:stdout) { should match "example-hl7v2" }
   end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare hl7v2-stores list --dataset=example-healthcare-dataset --format=\"value(TOPIC)\" --filter=ID:example-hl7v2") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-    its(:stdout) { should eq "projects/#{attribute("project")}/topics/example-topic\n" }
-  end
-
-  describe command("gcloud --project=#{attribute("project")} beta healthcare hl7v2-stores get-iam-policy example-hl7v2 --dataset=example-healthcare-dataset --format=\"value(bindings)\"") do
-    its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq "" }
-
-    let!(:data) do
-      expect(data).to eq ({
-        "role": "roles/healthcare.hl7V2Editor",
-        "members": ['serviceAccount:example-sa@#{attribute("project")}.iam.gserviceaccount.com']
-      })
-    end
-  end
-
-
 end
