@@ -20,6 +20,7 @@ provider "google" {
 
 resource "google_service_account" "service_account" {
   account_id = "example-healthcare-sa"
+  project    = var.project
 }
 
 module "pubsub" {
