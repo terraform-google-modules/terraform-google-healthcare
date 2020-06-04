@@ -26,5 +26,8 @@ module "project" {
 
   activate_apis = [
     "healthcare.googleapis.com",
+    "iam.googleapis.com",
+    "pubsub.googleapis.com",
+    "serviceusage.googleapis.com",
   ]
 }

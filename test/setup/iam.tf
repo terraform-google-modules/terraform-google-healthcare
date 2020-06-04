@@ -20,6 +20,8 @@ locals {
     "roles/healthcare.dicomStoreAdmin",
     "roles/healthcare.fhirStoreAdmin",
     "roles/healthcare.hl7V2StoreAdmin",
+    "roles/iam.serviceAccountAdmin",
+    "roles/pubsub.admin",
   ]
 }
 

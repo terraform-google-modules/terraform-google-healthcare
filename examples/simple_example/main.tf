@@ -15,31 +15,50 @@
  */
 
 provider "google" {
-  version = "~> 2.0"
+  version = "~> 3.0"
+}
+
+resource "google_service_account" "service_account" {
+  account_id = "example-sa"
+  project    = var.project
+}
+
+module "pubsub" {
+  source  = "terraform-google-modules/pubsub/google"
+  version = "~> 1.3"
+
+  topic      = "example-topic"
+  project_id = var.project
+}
+
+locals {
+  sa_member    = "serviceAccount:${google_service_account.service_account.account_id}@${var.project}.iam.gserviceaccount.com"
+  pubsub_topic = "projects/${var.project}/topics/${module.pubsub.topic}"
 }
 
 module "healthcare" {
   source = "../../"
 
-  name     = var.name
+  name     = "example-healthcare-dataset"
   project  = var.project
   location = "us-central1"
-  iam_members = [
-    { role = "roles/healthcare.datasetAdmin", member = "group:${var.group_email}" },
-    { role = "roles/healthcare.datasetViewer", member = "user:${var.user_email}" },
-  ]
+  iam_members = [{
+    role   = "roles/healthcare.datasetViewer"
+    member = local.sa_member
+  }]
   dicom_stores = [
     {
       name = "example-dicom-a"
       notification_config = {
-        pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+        pubsub_topic = local.pubsub_topic
       }
     },
     {
       name = "example-dicom-b"
-      iam_members = [
-        { role = "roles/healthcare.dicomEditor", member = "serviceAccount:${var.sa_email}" },
-      ]
+      iam_members = [{
+        role   = "roles/healthcare.dicomEditor"
+        member = local.sa_member
+      }]
     }
   ]
   fhir_stores = [
@@ -47,22 +66,24 @@ module "healthcare" {
       name    = "example-fhir"
       version = "R4"
       notification_config = {
-        pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
+        pubsub_topic = local.pubsub_topic
       }
-      iam_members = [
-        { role = "roles/healthcare.fhirResourceEditor", member = "serviceAccount:${var.sa_email}" },
-      ]
+      iam_members = [{
+        role   = "roles/healthcare.fhirResourceEditor"
+        member = local.sa_member
+      }]
     }
   ]
   hl7_v2_stores = [
     {
       name = "example-hl7v2"
-      notification_config = {
-        pubsub_topic = "projects/${var.project}/topics/${var.pubsub_topic}"
-      }
-      iam_members = [
-        { role = "roles/healthcare.hl7V2Editor", member = "serviceAccount:${var.sa_email}" },
-      ]
+      notification_configs = [{
+        pubsub_topic = local.pubsub_topic
+      }]
+      iam_members = [{
+        role   = "roles/healthcare.hl7V2Editor"
+        member = local.sa_member
+      }]
     }
   ]
 }

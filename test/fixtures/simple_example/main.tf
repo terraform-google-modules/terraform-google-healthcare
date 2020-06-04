@@ -27,10 +27,5 @@ resource "random_pet" "main" {
 module "example" {
   source = "../../../examples/simple_example"
 
-  project      = var.project
-  name         = random_pet.main.id
-  group_email  = var.group_email
-  sa_email     = var.sa_email
-  user_email   = var.user_email
-  pubsub_topic = var.pubsub_topic
+  project = var.project
 }

@@ -54,6 +54,8 @@ variable "iam_members" {
 #  iam_members: list of objects (optional)
 #    role: string (required)
 #    member: string (required)
+
+# Extra fields for dicom_stores:
 #  notification_config: object (optional)
 #    pubsub_topic: string (required)
 variable "dicom_stores" {
@@ -64,12 +66,17 @@ variable "dicom_stores" {
 
 # Extra fields for fhir_stores:
 #  version: string (required)
+#  notification_config: object (optional)
+#    pubsub_topic: string (required)
 variable "fhir_stores" {
   type        = any
   description = "Datastore that conforms to the FHIR standard for Healthcare information exchange."
   default     = []
 }
 
+# Extra fields for dicom_stores:
+#  notification_configs: list(object) (optional)
+#    pubsub_topic: string (required)
 variable "hl7_v2_stores" {
   type        = any
   description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."

@@ -2,18 +2,3 @@ name: simple_example
 attributes:
   - name: project
     required: true
-    type: string
-  - name: dataset_name
-    required: true
-    type: string
-  - name: group_email
-    required: true
-    type: string
-  - name: sa_email
-    required: true
-    type: string
-  - name: user_email
-    required: true
-    type: string
-  - name: pubsub_topic
-    required: true
