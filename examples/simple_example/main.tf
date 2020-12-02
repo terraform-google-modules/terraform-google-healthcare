@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-
 provider "google" {
   version = "~> 3.0"
-}
-
-data "google_project" "default" {
-  project_id = var.project
 }
 
 resource "google_service_account" "service_account" {
@@ -44,7 +39,6 @@ module "pubsub" {
 
 locals {
   sa_member            = "serviceAccount:${google_service_account.service_account.account_id}@${var.project}.iam.gserviceaccount.com"
-  healthcare_sa_member = "serviceAccount:service-${data.google_project.default.number}@gcp-sa-healthcare.iam.gserviceaccount.com"
   pubsub_topic         = "projects/${var.project}/topics/${module.pubsub.topic}"
 }
 
