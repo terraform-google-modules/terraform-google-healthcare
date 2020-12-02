@@ -57,6 +57,23 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
       pubsub_topic = notification_config.value.pubsub_topic
     }
   }
+
+  dynamic "stream_configs" {
+    for_each = lookup(each.value, "stream_configs", [])
+
+    content {
+      resource_types = lookup(stream_configs.value, "resource_types", null)
+
+      bigquery_destination {
+        dataset_uri = stream_configs.value.bigquery_destination.dataset_uri
+
+        schema_config {
+          schema_type               = lookup(stream_configs.value.bigquery_destination.schema_config, "schema_type", null)
+          recursive_structure_depth = stream_configs.value.bigquery_destination.schema_config.recursive_structure_depth
+        }
+      }
+    }
+  }
 }
 
 resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {

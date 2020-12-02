@@ -14,13 +14,24 @@
  * limitations under the License.
  */
 
+
 provider "google" {
   version = "~> 3.0"
+}
+
+data "google_project" "default" {
+  project_id = var.project
 }
 
 resource "google_service_account" "service_account" {
   account_id = "example-sa"
   project    = var.project
+}
+
+resource "google_bigquery_dataset" "example_dataset" {
+  dataset_id    = "example_dataset"
+  friendly_name = "Default Dataset"
+  project       = var.project
 }
 
 module "pubsub" {
@@ -32,8 +43,9 @@ module "pubsub" {
 }
 
 locals {
-  sa_member    = "serviceAccount:${google_service_account.service_account.account_id}@${var.project}.iam.gserviceaccount.com"
-  pubsub_topic = "projects/${var.project}/topics/${module.pubsub.topic}"
+  sa_member            = "serviceAccount:${google_service_account.service_account.account_id}@${var.project}.iam.gserviceaccount.com"
+  healthcare_sa_member = "serviceAccount:service-${data.google_project.default.number}@gcp-sa-healthcare.iam.gserviceaccount.com"
+  pubsub_topic         = "projects/${var.project}/topics/${module.pubsub.topic}"
 }
 
 module "healthcare" {
@@ -68,6 +80,14 @@ module "healthcare" {
       notification_config = {
         pubsub_topic = local.pubsub_topic
       }
+      stream_configs = [{
+        bigquery_destination = {
+          dataset_uri = "bq://${var.project}.${google_bigquery_dataset.example_dataset.dataset_id}"
+          schema_config = {
+            recursive_structure_depth = 3
+          }
+        }
+      }]
       iam_members = [{
         role   = "roles/healthcare.fhirResourceEditor"
         member = local.sa_member

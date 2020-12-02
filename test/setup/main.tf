@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 9.2.0"
 
   name              = "ci-healthcare"
   random_project_id = "true"
@@ -25,9 +25,16 @@ module "project" {
   billing_account   = var.billing_account
 
   activate_apis = [
-    "healthcare.googleapis.com",
     "iam.googleapis.com",
     "pubsub.googleapis.com",
     "serviceusage.googleapis.com",
   ]
+
+  activate_api_identities = [{
+    api = "healthcare.googleapis.com"
+    roles = [
+      "roles/bigquery/dataEditor",
+      "roles/bigquery.jobUser"
+    ]
+  }]
 }
