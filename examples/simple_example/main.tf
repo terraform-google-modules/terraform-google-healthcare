@@ -23,6 +23,12 @@ resource "google_service_account" "service_account" {
   project    = var.project
 }
 
+resource "google_bigquery_dataset" "example_dataset" {
+  dataset_id    = "example_dataset"
+  friendly_name = "Default Dataset"
+  project       = var.project
+}
+
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "~> 1.3"
@@ -68,6 +74,14 @@ module "healthcare" {
       notification_config = {
         pubsub_topic = local.pubsub_topic
       }
+      stream_configs = [{
+        bigquery_destination = {
+          dataset_uri = "bq://${var.project}.${google_bigquery_dataset.example_dataset.dataset_id}"
+          schema_config = {
+            recursive_structure_depth = 3
+          }
+        }
+      }]
       iam_members = [{
         role   = "roles/healthcare.fhirResourceEditor"
         member = local.sa_member

@@ -25,13 +25,19 @@ module "project" {
   billing_account      = var.billing_account
   skip_gcloud_download = true
 
-
   activate_apis = [
-    "healthcare.googleapis.com",
     "iam.googleapis.com",
     "pubsub.googleapis.com",
     "serviceusage.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "bigquery.googleapis.com"
   ]
+
+  activate_api_identities = [{
+    api = "healthcare.googleapis.com"
+    roles = [
+      "roles/bigquery.dataEditor",
+      "roles/bigquery.jobUser"
+    ]
+  }]
 }
