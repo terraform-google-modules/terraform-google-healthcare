@@ -49,4 +49,12 @@ control "gcloud" do
     its(:stderr) { should eq "" }
     its(:stdout) { should match "example-hl7v2" }
   end
+
+  describe command("gcloud --project=#{attribute("project")} beta healthcare hl7v2-stores describe example-hl7v2 --dataset=example-healthcare-dataset") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) {
+      should match "SOFT_FAIL"
+    }
+  end
 end

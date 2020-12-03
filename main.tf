@@ -93,4 +93,14 @@ resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
       pubsub_topic = notification_configs.value.pubsub_topic
     }
   }
+
+  dynamic "parser_config" {
+    for_each = lookup(each.value, "parser_config", null) != null ? [each.value.parser_config] : []
+    content {
+      allow_null_header  = lookup(parser_config.value, "allow_null_header", null)
+      segment_terminator = lookup(parser_config.value, "segment_terminator", null)
+      schema             = lookup(parser_config.value, "schema", null)
+      version            = lookup(parser_config.value, "version", null)
+    }
+  }
 }
