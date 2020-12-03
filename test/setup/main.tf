@@ -28,7 +28,8 @@ module "project" {
     "iam.googleapis.com",
     "pubsub.googleapis.com",
     "serviceusage.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
+    "cloudresourcemanager.googleapis.com",
+    "bigquery.googleapis.com"
   ]
 
   activate_api_identities = [{
