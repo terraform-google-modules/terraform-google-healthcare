@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v1.0.0...v1.1.0) (2020-12-03)
+
+
+### Features
+
+* Add support for stream_configs in FHIR store ([#22](https://www.github.com/terraform-google-modules/terraform-google-healthcare/issues/22)) ([a2bcaf6](https://www.github.com/terraform-google-modules/terraform-google-healthcare/commit/a2bcaf69e1c42f7a3b0701a506e8044e92aa9d10))
+
 ## [1.0.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v0.1.0...v1.0.0) (2020-06-05)
 
 
