@@ -33,7 +33,7 @@ module "project" {
   activate_api_identities = [{
     api = "healthcare.googleapis.com"
     roles = [
-      "roles/bigquery/dataEditor",
+      "roles/bigquery.dataEditor",
       "roles/bigquery.jobUser"
     ]
   }]
