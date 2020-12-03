@@ -80,19 +80,15 @@ provision a project with the necessary APIs enabled.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| dicom\_stores | Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange. | `any` | `[]` | no |
-| fhir\_stores | Datastore that conforms to the FHIR standard for Healthcare information exchange. | `any` | `[]` | no |
-| hl7\_v2\_stores | Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange. | `any` | `[]` | no |
-| iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | <pre>list(object({<br>    role   = string<br>    member = string<br>  }))</pre> | `[]` | no |
-| location | The location for the Dataset. | `string` | n/a | yes |
-| name | The resource name for the Dataset. | `string` | n/a | yes |
-| project | The ID of the project in which the resource belongs. | `string` | n/a | yes |
-| time\_zone | The default timezone used by this dataset. | `string` | `null` | no |
-
-## Outputs
-
-No output.
+|------|-------------|:----:|:-----:|:-----:|
+| dicom\_stores | Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange. | any | `<list>` | no |
+| fhir\_stores | Datastore that conforms to the FHIR standard for Healthcare information exchange. | any | `<list>` | no |
+| hl7\_v2\_stores | Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange. | any | `<list>` | no |
+| iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | object | `<list>` | no |
+| location | The location for the Dataset. | string | n/a | yes |
+| name | The resource name for the Dataset. | string | n/a | yes |
+| project | The ID of the project in which the resource belongs. | string | n/a | yes |
+| time\_zone | The default timezone used by this dataset. | string | `"null"` | no |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
