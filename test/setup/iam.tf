@@ -22,7 +22,8 @@ locals {
     "roles/healthcare.hl7V2StoreAdmin",
     "roles/iam.serviceAccountAdmin",
     "roles/pubsub.admin",
-    "roles/bigquery.dataEditor"
+    "roles/bigquery.dataEditor",
+    "roles/resourcemanager.projectIamAdmin"
   ]
 }
 
