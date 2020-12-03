@@ -28,6 +28,7 @@ module "project" {
     "iam.googleapis.com",
     "pubsub.googleapis.com",
     "serviceusage.googleapis.com",
+    "cloudresourcemanager.googleapis.com"
   ]
 
   activate_api_identities = [{
