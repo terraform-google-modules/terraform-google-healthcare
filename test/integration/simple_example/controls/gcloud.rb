@@ -72,8 +72,8 @@ control "gcloud" do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
     its(:stdout) {
-      should match "parser_config"
-      should match "SOFT_FAIL"
+      should include "parser_config"
+      should include "SOFT_FAIL"
     }
   end
 
