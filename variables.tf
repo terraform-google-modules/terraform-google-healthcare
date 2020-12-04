@@ -68,6 +68,8 @@ variable "dicom_stores" {
 #  version: string (required)
 #  notification_config: object (optional)
 #    pubsub_topic: string (required)
+#  stream_configs: list(object) (optional)
+#    See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/healthcare_fhir_store#stream_configs for attributes
 variable "fhir_stores" {
   type        = any
   description = "Datastore that conforms to the FHIR standard for Healthcare information exchange."
@@ -77,6 +79,8 @@ variable "fhir_stores" {
 # Extra fields for dicom_stores:
 #  notification_configs: list(object) (optional)
 #    pubsub_topic: string (required)
+#  parser_config: object (optional)
+#    See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/healthcare_hl7_v2_store#parser_config for attributes
 variable "hl7_v2_stores" {
   type        = any
   description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
