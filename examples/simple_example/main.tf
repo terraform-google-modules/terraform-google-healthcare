@@ -18,6 +18,10 @@ provider "google" {
   version = "~> 3.0"
 }
 
+provider "google-beta" {
+  version = "~> 3.46.0"
+}
+
 resource "google_service_account" "service_account" {
   account_id = "example-sa"
   project    = var.project
@@ -94,6 +98,15 @@ module "healthcare" {
       notification_configs = [{
         pubsub_topic = local.pubsub_topic
       }]
+      parser_config = {
+        schema  = <<EOF
+          {
+            "schematizedParsingType": "SOFT_FAIL",
+            "ignoreMinOccurs": true
+          }
+        EOF
+        version = "V2"
+      }
       iam_members = [{
         role   = "roles/healthcare.hl7V2Editor"
         member = local.sa_member
