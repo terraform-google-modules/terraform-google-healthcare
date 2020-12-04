@@ -66,6 +66,10 @@ variable "dicom_stores" {
 
 # Extra fields for fhir_stores:
 #  version: string (required)
+#  enable_update_create: bool (optional)
+#  disable_referential_integrity: bool (optional)
+#  disable_resource_versioning: bool (optional)
+#  enable_history_import: bool (optional)
 #  notification_config: object (optional)
 #    pubsub_topic: string (required)
 variable "fhir_stores" {
