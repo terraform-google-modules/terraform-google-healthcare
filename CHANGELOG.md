@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v1.1.0...v1.2.0) (2020-12-04)
+
+
+### Features
+
+* add parser_config to hl7v2 source ([#27](https://www.github.com/terraform-google-modules/terraform-google-healthcare/issues/27)) ([66f5640](https://www.github.com/terraform-google-modules/terraform-google-healthcare/commit/66f56401dc053650d04a2ee9896fb5fb3183529b))
+* support more FHIR store attributes ([#30](https://www.github.com/terraform-google-modules/terraform-google-healthcare/issues/30)) ([8790b0a](https://www.github.com/terraform-google-modules/terraform-google-healthcare/commit/8790b0a5441c277e4013986c85b6c562c4ba39f4))
+
 ## [1.1.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v1.0.0...v1.1.0) (2020-12-03)
 
 
