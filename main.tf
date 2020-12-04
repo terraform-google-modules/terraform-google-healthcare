@@ -51,6 +51,11 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
   version = each.value.version
   labels  = lookup(each.value, "labels", null)
 
+  enable_update_create          = lookup(each.value, "enable_update_create", null)
+  disable_referential_integrity = lookup(each.value, "disable_referential_integrity", null)
+  disable_resource_versioning   = lookup(each.value, "disable_resource_versioning", null)
+  enable_history_import         = lookup(each.value, "enable_history_import", null)
+
   dynamic "notification_config" {
     for_each = lookup(each.value, "notification_config", null) != null ? [each.value.notification_config] : []
     content {
