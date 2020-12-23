@@ -53,6 +53,7 @@ the resources of this module:
 - Healthcare DICOM Admin: `roles/healthcare.dicomStoreAdmin`
 - Healthcare FHIR Admin: `roles/healthcare.fhirStoreAdmin`
 - Healthcare HL7 V2 Admin: `roles/healthcare.hl7V2StoreAdmin`
+- Healthcare Consent Admin: `roles/healthcare.ConsentStoreAdmin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -84,6 +85,7 @@ provision a project with the necessary APIs enabled.
 | dicom\_stores | Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange. | `any` | `[]` | no |
 | fhir\_stores | Datastore that conforms to the FHIR standard for Healthcare information exchange. | `any` | `[]` | no |
 | hl7\_v2\_stores | Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange. | `any` | `[]` | no |
+| consent\_stores | The Consent Management API is a tool for tracking user consents and the documentation associated with the consents. | `any` | `[]` | no |
 | iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | <pre>list(object({<br>    role   = string<br>    member = string<br>  }))</pre> | `[]` | no |
 | location | The location for the Dataset. | `string` | n/a | yes |
 | name | The resource name for the Dataset. | `string` | n/a | yes |
