@@ -19,7 +19,7 @@ provider "google" {
 }
 
 provider "google-beta" {
-  version = "~> 3.46.0"
+  version = "~> 3.49.0"
 }
 
 resource "google_service_account" "service_account" {
