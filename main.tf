@@ -110,16 +110,16 @@ resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
   }
 }
 
-resource "google_healthcare_consent_store" "consent_stores" {
-  provider = google-beta
-  for_each = {
-    for s in var.consent_stores :
-    s.name => s
-  }
+# resource "google_healthcare_consent_store" "consent_stores" {
+#   provider = google-beta
+#   for_each = {
+#     for s in var.consent_stores :
+#     s.name => s
+#   }
 
-  name                            = each.value.name
-  dataset                         = google_healthcare_dataset.dataset.id
-  labels                          = lookup(each.value, "labels", null)
-  enable_consent_create_on_update = lookup(each.value, "enable_consent_create_on_update", null)
-  default_consent_ttl             = lookup(each.value, "default_consent_ttl", null)
-}
+#   name                            = each.value.name
+#   dataset                         = google_healthcare_dataset.dataset.id
+#   labels                          = lookup(each.value, "labels", null)
+#   enable_consent_create_on_update = lookup(each.value, "enable_consent_create_on_update", null)
+#   default_consent_ttl             = lookup(each.value, "default_consent_ttl", null)
+# }
