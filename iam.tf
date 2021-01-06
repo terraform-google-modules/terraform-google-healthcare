@@ -101,7 +101,7 @@ resource "google_healthcare_consent_store_iam_member" "consent_store_iam_members
   }
   consent_store_id = google_healthcare_consent_store.consent_stores[each.value.store_name].name
   dataset          = google_healthcare_dataset.dataset.id
-  role             = each.value.role 
+  role             = each.value.role
   member           = each.value.member
 }
 
