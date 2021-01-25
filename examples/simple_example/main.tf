@@ -14,14 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 3.0"
-}
-
-provider "google-beta" {
-  version = "~> 3.46.0"
-}
-
 resource "google_service_account" "service_account" {
   account_id = "example-sa"
   project    = var.project
@@ -35,7 +27,7 @@ resource "google_bigquery_dataset" "example_dataset" {
 
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "~> 1.3"
+  version = "~> 1.8"
 
   topic      = "example-topic"
   project_id = var.project
