@@ -15,11 +15,11 @@
  */
 
 provider "google" {
-  version = ">= 3.49.0"
+  version = ">= 3.54.0"
 }
 
 provider "google-beta" {
-  version = ">= 3.49.0"
+  version = ">= 3.54.0"
 }
 
 resource "google_service_account" "service_account" {
