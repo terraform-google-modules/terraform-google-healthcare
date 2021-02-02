@@ -16,6 +16,7 @@
 
 locals {
   int_required_roles = [
+    "roles/healthcare.consentStoreAdmin",
     "roles/healthcare.datasetAdmin",
     "roles/healthcare.dicomStoreAdmin",
     "roles/healthcare.fhirStoreAdmin",
