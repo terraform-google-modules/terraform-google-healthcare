@@ -99,7 +99,7 @@ resource "google_healthcare_consent_store_iam_member" "consent_store_iam_members
     for m in local.all_consent_iam_members :
     "${m.store_name} ${m.role} ${m.member}" => m
   }
-  consent_store_id = google_healthcare_consent_store.consent_stores[each.value.store_name].name
+  consent_store_id = google_healthcare_consent_store.consent_stores[each.value.store_name].id
   dataset          = google_healthcare_consent_store.consent_stores[each.value.store_name].dataset
   role             = each.value.role
   member           = each.value.member
