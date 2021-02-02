@@ -96,6 +96,6 @@ variable "hl7_v2_stores" {
 #  default_consent_ttl: string (optional)
 variable "consent_stores" {
   type        = any
-  description = "The Consent Management API is a tool for tracking user consents and the documentation associated with the consents."
+  description = "Datastore that contain all information related to the configuration and operation of the Consent Management API (https://cloud.google.com/healthcare/docs/how-tos/consent-managing)."
   default     = []
 }
