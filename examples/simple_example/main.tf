@@ -109,4 +109,15 @@ module "healthcare" {
       }]
     }
   ]
+  consent_stores = [
+    {
+      name                            = "example-consent"
+      enable_consent_create_on_update = false
+      default_consent_ttl             = "90000s"
+      iam_members = [{
+        role   = "roles/healthcare.consentEditor"
+        member = local.sa_member
+      }]
+    }
+  ]
 }

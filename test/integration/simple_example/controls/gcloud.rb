@@ -76,4 +76,10 @@ control "gcloud" do
     its(:stdout) { should include "SOFT_FAIL" }
   end
 
+  describe command("gcloud beta --project=#{attribute("project")} healthcare consent-stores describe example-consent --dataset=example-healthcare-dataset") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should include "defaultConsentTtl" }
+  end
+
 end

@@ -42,7 +42,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v0.13
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v2.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.54.0
 
 ### Service Account
 
@@ -53,6 +53,7 @@ the resources of this module:
 - Healthcare DICOM Admin: `roles/healthcare.dicomStoreAdmin`
 - Healthcare FHIR Admin: `roles/healthcare.fhirStoreAdmin`
 - Healthcare HL7 V2 Admin: `roles/healthcare.hl7V2StoreAdmin`
+- Healthcare Consent Admin: `roles/healthcare.ConsentStoreAdmin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -81,6 +82,7 @@ provision a project with the necessary APIs enabled.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| consent\_stores | Datastore that contain all information related to the configuration and operation of the Consent Management API (https://cloud.google.com/healthcare/docs/how-tos/consent-managing). | `any` | `[]` | no |
 | dicom\_stores | Datastore that conforms to the DICOM (https://www.dicomstandard.org/about/) standard for Healthcare information exchange. | `any` | `[]` | no |
 | fhir\_stores | Datastore that conforms to the FHIR standard for Healthcare information exchange. | `any` | `[]` | no |
 | hl7\_v2\_stores | Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange. | `any` | `[]` | no |

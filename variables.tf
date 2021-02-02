@@ -90,3 +90,12 @@ variable "hl7_v2_stores" {
   description = "Datastore that conforms to the HL7 V2 (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information exchange."
   default     = []
 }
+
+# Extra fields for consent_stores:
+#  enable_consent_create_on_update: bool (optional)
+#  default_consent_ttl: string (optional)
+variable "consent_stores" {
+  type        = any
+  description = "Datastore that contain all information related to the configuration and operation of the Consent Management API (https://cloud.google.com/healthcare/docs/how-tos/consent-managing)."
+  default     = []
+}
