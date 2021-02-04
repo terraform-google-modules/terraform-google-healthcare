@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v1.2.1...v1.3.0) (2021-02-02)
+
+
+### Features
+
+* support consent store ([#33](https://www.github.com/terraform-google-modules/terraform-google-healthcare/issues/33)) ([8597c89](https://www.github.com/terraform-google-modules/terraform-google-healthcare/commit/8597c89057ec00e5dcdd7cb57a69b322969670df))
+
 ### [1.2.1](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v1.2.0...v1.2.1) (2021-01-29)
 
 
