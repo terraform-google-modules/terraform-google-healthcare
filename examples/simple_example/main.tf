@@ -25,6 +25,11 @@ resource "google_bigquery_dataset" "example_dataset" {
   project       = var.project
 }
 
+resource "google_bigquery_table" "example_table" {
+  dataset_id = google_bigquery_dataset.example_dataset.dataset_id
+  table_id   = "example_table"
+}
+
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "~> 1.8"
@@ -60,6 +65,14 @@ module "healthcare" {
       iam_members = [{
         role   = "roles/healthcare.dicomEditor"
         member = local.sa_member
+      }]
+    },
+    {
+      name = "example-dicom-c"
+      stream_configs = [{
+        bigquery_destination = {
+          table_uri = "bq://${var.project}.${google_bigquery_dataset.example_dataset.dataset_id}.${google_bigquery_table.example_table.table_id}"
+        }
       }]
     }
   ]

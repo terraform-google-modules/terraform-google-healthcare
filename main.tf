@@ -22,6 +22,8 @@ resource "google_healthcare_dataset" "dataset" {
 }
 
 resource "google_healthcare_dicom_store" "dicom_stores" {
+  provider = google-beta
+
   for_each = {
     for s in var.dicom_stores :
     s.name => s
@@ -38,6 +40,15 @@ resource "google_healthcare_dicom_store" "dicom_stores" {
     }
   }
 
+  dynamic "stream_configs" {
+    for_each = lookup(each.value, "stream_configs", [])
+
+    content {
+      bigquery_destination {
+        table_uri = stream_configs.value.bigquery_destination.table_uri
+      }
+    }
+  }
 }
 
 resource "google_healthcare_fhir_store" "fhir_stores" {

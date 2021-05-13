@@ -34,6 +34,7 @@ control "gcloud" do
     its(:stderr) { should eq "" }
     its(:stdout) { should include "example-dicom-a" }
     its(:stdout) { should include "example-dicom-b" }
+    its(:stdout) { should include "example-dicom-c" }
   end
 
   # FHIR stores
