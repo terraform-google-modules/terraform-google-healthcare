@@ -28,7 +28,7 @@ resource "google_bigquery_dataset" "example_dataset" {
 resource "google_bigquery_table" "example_table" {
   dataset_id = google_bigquery_dataset.example_dataset.dataset_id
   table_id   = "example_table"
-  project       = var.project
+  project    = var.project
 }
 
 module "pubsub" {
