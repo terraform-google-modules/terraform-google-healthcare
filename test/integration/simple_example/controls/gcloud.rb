@@ -34,6 +34,21 @@ control "gcloud" do
     its(:stderr) { should eq "" }
     its(:stdout) { should include "example-dicom-a" }
     its(:stdout) { should include "example-dicom-b" }
+    its(:stdout) { should include "example-dicom-c" }
+  end
+
+  describe command("gcloud --project=#{attribute("project")} healthcare dicom-stores describe example-dicom-a --dataset=example-healthcare-dataset") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should include "notificationConfig" }
+    its(:stdout) { should include "projects/#{attribute("project")}/topics/example-topic\n" }
+  end
+
+  describe command("gcloud beta --project=#{attribute("project")} healthcare dicom-stores describe example-dicom-c --dataset=example-healthcare-dataset") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should include "streamConfigs" }
+    its(:stdout) { should include "bq://#{attribute("project")}.example_dataset.example_table" }
   end
 
   # FHIR stores
