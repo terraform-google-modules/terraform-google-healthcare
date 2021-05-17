@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.0.0...v2.1.0) (2021-05-17)
+
+
+### Features
+
+* Add dicom bq support ([#48](https://www.github.com/terraform-google-modules/terraform-google-healthcare/issues/48)) ([c2ead6f](https://www.github.com/terraform-google-modules/terraform-google-healthcare/commit/c2ead6f0d40a136863c7befd8088d990de2855e8))
+
 ## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v1.3.0...v2.0.0) (2021-03-15)
 
 
