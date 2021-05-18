@@ -19,11 +19,11 @@ and this project adheres to
 
 ### ⚠ BREAKING CHANGES
 
-* add Terraform 0.15 constraint and module attribution (#45)
+* add Terraform 0.13 constraint and module attribution (#45)
 
 ### Features
 
-* add Terraform 0.15 constraint and module attribution ([#45](https://www.github.com/terraform-google-modules/terraform-google-healthcare/issues/45)) ([0997d75](https://www.github.com/terraform-google-modules/terraform-google-healthcare/commit/0997d755fa58f126949d020a0d06a9ad90cb6c9b))
+* add Terraform 0.13 constraint and module attribution ([#45](https://www.github.com/terraform-google-modules/terraform-google-healthcare/issues/45)) ([0997d75](https://www.github.com/terraform-google-modules/terraform-google-healthcare/commit/0997d755fa58f126949d020a0d06a9ad90cb6c9b))
 
 ## [1.3.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v1.2.1...v1.3.0) (2021-02-02)
 
