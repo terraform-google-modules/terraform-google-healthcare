@@ -122,7 +122,6 @@ resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
 }
 
 resource "google_healthcare_consent_store" "consent_stores" {
-  provider = google-beta
   for_each = {
     for s in var.consent_stores :
     s.name => s
