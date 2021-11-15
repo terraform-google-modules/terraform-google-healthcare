@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-output "project_id" {
+output "project" {
   description = "The ID of the project in which resources are provisioned."
   value       = var.project_id
 }
