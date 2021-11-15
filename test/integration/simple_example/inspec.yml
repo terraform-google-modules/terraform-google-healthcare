@@ -14,5 +14,5 @@
 
 name: simple_example
 attributes:
-  - name: project_id
+  - name: project
     required: true
