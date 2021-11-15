@@ -27,5 +27,5 @@ resource "random_pet" "main" {
 module "example" {
   source = "../../../examples/simple_example"
 
-  project = var.project
+  project = var.project_id
 }
