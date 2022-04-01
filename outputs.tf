@@ -13,3 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+output "dicom_stores" {
+  value       = google_healthcare_dicom_store.dicom_stores
+  description = "Attributes for all DICOM stores."
+}
+
+output "fhir_stores" {
+  value       = google_healthcare_fhir_store.fhir_stores
+  description = "Attributes for all FHIR stores."
+}
+
+output "hl7_v2_stores" {
+  value       = google_healthcare_hl7_v2_store.hl7_v2_stores
+  description = "Attributes for all HL7 V2 stores."
+}
+
+output "consent_stores" {
+  value       = google_healthcare_consent_store.consent_stores
+  description = "Attributes for all Consent stores."
+}

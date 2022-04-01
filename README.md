@@ -94,7 +94,12 @@ provision a project with the necessary APIs enabled.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| consent\_stores | Attributes for all Consent stores. |
+| dicom\_stores | Attributes for all DICOM stores. |
+| fhir\_stores | Attributes for all FHIR stores. |
+| hl7\_v2\_stores | Attributes for all HL7 V2 stores. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
