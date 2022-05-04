@@ -52,6 +52,8 @@ resource "google_healthcare_dicom_store" "dicom_stores" {
 }
 
 resource "google_healthcare_fhir_store" "fhir_stores" {
+  provider = google-beta
+
   for_each = {
     for s in var.fhir_stores :
     s.name => s
