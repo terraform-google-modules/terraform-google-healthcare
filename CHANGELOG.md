@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.2.1](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.2.0...v2.2.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* Use google-beta for FHIR stores to support beta only V2 analytics schema feature. ([#56](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/56)) ([512e110](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/512e1103dd2fc82b30f440b1bb8280383f7fdfb5))
+
 ## [2.2.0](https://www.github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.1.0...v2.2.0) (2021-11-17)
 
 
