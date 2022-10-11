@@ -75,7 +75,6 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} healthcare fhir-stores describe example-fhir --dataset=example-healthcare-dataset") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should include "projects/#{attribute("project")}/topics/example-topic\n" }
     its(:stdout) { should include "streamConfigs" }
     its(:stdout) { should include "bq://#{attribute("project")}.example_dataset" }
     its(:stdout) { should include "recursiveStructureDepth: '3'" }
