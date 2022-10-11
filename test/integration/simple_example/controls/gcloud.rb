@@ -75,7 +75,16 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project")} healthcare fhir-stores describe example-fhir --dataset=example-healthcare-dataset") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should include "notificationConfig" }
+    its(:stdout) { should include "projects/#{attribute("project")}/topics/example-topic\n" }
+    its(:stdout) { should include "streamConfigs" }
+    its(:stdout) { should include "bq://#{attribute("project")}.example_dataset" }
+    its(:stdout) { should include "recursiveStructureDepth: '3'" }
+  end
+
+  describe command("gcloud beta --project=#{attribute("project")} healthcare fhir-stores describe example-fhir --dataset=example-healthcare-dataset") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should include "notificationConfigs" }
     its(:stdout) { should include "projects/#{attribute("project")}/topics/example-topic\n" }
     its(:stdout) { should include "streamConfigs" }
     its(:stdout) { should include "bq://#{attribute("project")}.example_dataset" }
