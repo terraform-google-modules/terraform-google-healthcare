@@ -87,7 +87,7 @@ module "healthcare" {
       disable_resource_versioning   = false
       enable_history_import         = false
       notification_configs = [{
-        pubsub_topic = local.pubsub_topic
+        pubsub_topic       = local.pubsub_topic
         send_full_resource = true
       }]
       stream_configs = [{
