@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.1.0"
+  version = "~> 14.0.0"
 
   name              = "ci-healthcare"
   random_project_id = "true"
