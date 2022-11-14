@@ -76,6 +76,14 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
     }
   }
 
+  dynamic "notification_configs" {
+    for_each = lookup(each.value, "notification_configs", [])
+    content {
+      pubsub_topic       = lookup(notification_configs.value, "pubsub_topic", null)
+      send_full_resource = lookup(notification_configs.value, "send_full_resource", null)
+    }
+  }
+
   dynamic "stream_configs" {
     for_each = lookup(each.value, "stream_configs", [])
 

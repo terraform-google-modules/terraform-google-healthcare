@@ -86,9 +86,10 @@ module "healthcare" {
       disable_referential_integrity = false
       disable_resource_versioning   = false
       enable_history_import         = false
-      notification_config = {
-        pubsub_topic = local.pubsub_topic
-      }
+      notification_configs = [{
+        pubsub_topic       = local.pubsub_topic
+        send_full_resource = true
+      }]
       stream_configs = [{
         bigquery_destination = {
           dataset_uri = "bq://${var.project}.${google_bigquery_dataset.example_dataset.dataset_id}"
