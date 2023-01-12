@@ -29,11 +29,11 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-healthcare/v2.2.1"
+    module_name = "blueprints/terraform/terraform-google-healthcare/v2.3.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-healthcare/v2.2.1"
+    module_name = "blueprints/terraform/terraform-google-healthcare/v2.3.0"
   }
 
 }

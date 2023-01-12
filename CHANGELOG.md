@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.2.1...v2.3.0) (2022-12-29)
+
+
+### Features
+
+* Add fhir notification configs ([#59](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/59)) ([5aafd38](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/5aafd3842b33700397fec2d85418e54d6b306491))
+
 ### [2.2.1](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.2.0...v2.2.1) (2022-05-04)
 
 
