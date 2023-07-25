@@ -42,7 +42,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v0.13
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v4.73.2
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v4.75.0
 
 ### Service Account
 
