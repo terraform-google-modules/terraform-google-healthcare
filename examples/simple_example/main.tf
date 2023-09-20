@@ -89,6 +89,7 @@ module "healthcare" {
       notification_configs = [{
         pubsub_topic       = local.pubsub_topic
         send_full_resource = true
+        send_previous_resource_on_delete = true
       }]
       stream_configs = [{
         bigquery_destination = {

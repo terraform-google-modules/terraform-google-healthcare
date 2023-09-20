@@ -81,6 +81,7 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
     content {
       pubsub_topic       = lookup(notification_configs.value, "pubsub_topic", null)
       send_full_resource = lookup(notification_configs.value, "send_full_resource", null)
+      send_previous_resource_on_delete = lookup(notification_configs.value, "send_previous_resource_on_delete", null)
     }
   }
 
