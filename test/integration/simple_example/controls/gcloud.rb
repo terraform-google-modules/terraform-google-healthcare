@@ -76,7 +76,7 @@ control "gcloud" do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
     its(:stdout) { should include "streamConfigs" }
-    its(:stdout) { should include "complex_data_type_reference_parsing" }
+    its(:stdout) { should include "complexDataTypeReferenceParsing: 'DISABLED'" }
     its(:stdout) { should include "bq://#{attribute("project")}.example_dataset" }
     its(:stdout) { should include "recursiveStructureDepth: '3'" }
   end
@@ -87,7 +87,7 @@ control "gcloud" do
     its(:stdout) { should include "notificationConfigs" }
     its(:stdout) { should include "projects/#{attribute("project")}/topics/example-topic\n" }
     its(:stdout) { should include "streamConfigs" }
-    its(:stdout) { should include "complex_data_type_reference_parsing" }
+    its(:stdout) { should include "complexDataTypeReferenceParsing: 'DISABLED'" }
     its(:stdout) { should include "bq://#{attribute("project")}.example_dataset" }
     its(:stdout) { should include "recursiveStructureDepth: '3'" }
   end
