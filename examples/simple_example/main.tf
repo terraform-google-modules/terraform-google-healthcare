@@ -98,7 +98,7 @@ module "healthcare" {
           dataset_uri = "bq://${var.project}.${google_bigquery_dataset.example_dataset.dataset_id}"
           schema_config = {
             recursive_structure_depth = 3
-            lastUpdatedPartitionConfig = {
+            last_updated_partition_config = {
               type          = "HOUR"
               expiration_ms = 1000000
             }
