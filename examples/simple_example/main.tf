@@ -98,13 +98,13 @@ module "healthcare" {
           dataset_uri = "bq://${var.project}.${google_bigquery_dataset.example_dataset.dataset_id}"
           schema_config = {
             recursive_structure_depth = 3
+            lastUpdatedPartitionConfig = {
+              type          = "HOUR"
+              expiration_ms = 1000000
+            }
           }
         }
       }]
-      lastUpdatedPartitionConfig = {
-        type          = "HOUR"
-        expiration_ms = 1000000
-      }
       iam_members = [{
         role   = "roles/healthcare.fhirResourceEditor"
         member = local.sa_member
