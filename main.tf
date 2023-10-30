@@ -100,8 +100,8 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
           recursive_structure_depth = stream_configs.value.bigquery_destination.schema_config.recursive_structure_depth
 
           last_updated_partition_config {
-            type          = lookup(stream_configs.value.bigquery_destination.schema_config.last_updated_partition_config.type, "type", null)
-            expiration_ms = lookup(stream_configs.value.bigquery_destination.schema_config.last_updated_partition_config.expiration_ms, "expiration_ms", null)
+            type          = lookup(stream_configs.value.bigquery_destination.schema_config.last_updated_partition_config, "type", null)
+            expiration_ms = lookup(stream_configs.value.bigquery_destination.schema_config.last_updated_partition_config, "expiration_ms", null)
           }
         }
       }
