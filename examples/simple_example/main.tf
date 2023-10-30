@@ -80,12 +80,14 @@ module "healthcare" {
   ]
   fhir_stores = [
     {
-      name                          = "example-fhir"
-      version                       = "R4"
-      enable_update_create          = true
-      disable_referential_integrity = false
-      disable_resource_versioning   = false
-      enable_history_import         = false
+      name                                = "example-fhir"
+      version                             = "R4"
+      enable_update_create                = true
+      disable_referential_integrity       = false
+      disable_resource_versioning         = false
+      enable_history_import               = false
+      complex_data_type_reference_parsing = "DISABLED"
+
       notification_configs = [{
         pubsub_topic                     = local.pubsub_topic
         send_full_resource               = true
