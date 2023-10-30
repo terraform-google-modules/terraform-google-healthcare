@@ -86,14 +86,6 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
     }
   }
 
-  dynamic "last_updated_partition_config" {
-    for_each = lookup(each.value, "last_updated_partition_config", null) != null ? [each.value.last_updated_partition_config] : []
-    content {
-      type          = lookup(last_updated_partition_config.value, "type", null)
-      expiration_ms = lookup(last_updated_partition_config.value, "expiration_ms", null)
-    }
-  }
-
   dynamic "stream_configs" {
     for_each = lookup(each.value, "stream_configs", [])
 
@@ -104,8 +96,10 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
         dataset_uri = stream_configs.value.bigquery_destination.dataset_uri
 
         schema_config {
-          schema_type               = lookup(stream_configs.value.bigquery_destination.schema_config, "schema_type", null)
-          recursive_structure_depth = stream_configs.value.bigquery_destination.schema_config.recursive_structure_depth
+          schema_type                   = lookup(stream_configs.value.bigquery_destination.schema_config, "schema_type", null)
+          recursive_structure_depth     = stream_configs.value.bigquery_destination.schema_config.recursive_structure_depth
+          last_updated_partition_config = lookup(stream_configs.value.bigquery_destination.schema_config.type, "type", null)
+          expiration_ms                 = lookup(stream_configs.value.bigquery_destination.schema_config.expiration_ms, "expiration_ms", null)
         }
       }
     }
