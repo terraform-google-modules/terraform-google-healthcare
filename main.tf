@@ -96,8 +96,8 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
         dataset_uri = stream_configs.value.bigquery_destination.dataset_uri
 
         schema_config {
-          schema_type                   = lookup(stream_configs.value.bigquery_destination.schema_config, "schema_type", null)
-          recursive_structure_depth     = stream_configs.value.bigquery_destination.schema_config.recursive_structure_depth
+          schema_type               = lookup(stream_configs.value.bigquery_destination.schema_config, "schema_type", null)
+          recursive_structure_depth = stream_configs.value.bigquery_destination.schema_config.recursive_structure_depth
 
           last_updated_partition_config {
             type          = lookup(stream_configs.value.bigquery_destination.schema_config.last_updated_partition_config.type, "type", null)
