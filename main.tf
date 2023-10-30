@@ -86,6 +86,14 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
     }
   }
 
+  dynamic "last_updated_partition_config" {
+    for_each = lookup(each.value, "last_updated_partition_config",null) != null ? [each.value.last_updated_partition_config] : []
+    content {
+      type = lookup(last_updated_partition_config.value, "type", null)
+      expiration_ms= lookup(last_updated_partition_config.value, "expiration_ms", null)
+    }
+  }
+
   dynamic "stream_configs" {
     for_each = lookup(each.value, "stream_configs", [])
 

@@ -79,6 +79,7 @@ control "gcloud" do
     its(:stdout) { should include "complexDataTypeReferenceParsing" }
     its(:stdout) { should include "bq://#{attribute("project")}.example_dataset" }
     its(:stdout) { should include "recursiveStructureDepth: '3'" }
+    its(:stdout) { should include "lastUpdatedPartitionConfig"}
   end
 
   describe command("gcloud beta --project=#{attribute("project")} healthcare fhir-stores describe example-fhir --dataset=example-healthcare-dataset") do
@@ -90,6 +91,7 @@ control "gcloud" do
     its(:stdout) { should include "complexDataTypeReferenceParsing" }
     its(:stdout) { should include "bq://#{attribute("project")}.example_dataset" }
     its(:stdout) { should include "recursiveStructureDepth: '3'" }
+    its(:stdout) { should include "lastUpdatedPartitionConfig"}
   end
 
   describe command("gcloud beta --project=#{attribute("project")} healthcare hl7v2-stores describe example-hl7v2 --dataset=example-healthcare-dataset") do

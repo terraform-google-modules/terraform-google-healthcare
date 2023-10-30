@@ -101,6 +101,10 @@ module "healthcare" {
           }
         }
       }]
+      lastUpdatedPartitionConfig={
+        type="HOUR"
+        expiration_ms = 1000000
+      }
       iam_members = [{
         role   = "roles/healthcare.fhirResourceEditor"
         member = local.sa_member
