@@ -7,6 +7,20 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.3.0...v2.4.0) (2023-11-03)
+
+
+### Features
+
+* add sendPreviousResourceOnDelete to fhir-notification-configs ([#83](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/83)) ([a0696bb](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/a0696bbb9068154b737b4779c8f98b9940a13445))
+* add support for complexDataTypeReferenceParsing ([#79](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/79)) ([cb3530c](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/cb3530cadb8f5d6972caf8792d01d2174ed88525))
+* add support for lastUpdatedPartitionConfig ([#88](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/88)) ([9de996c](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/9de996cb33a269ce55a06e9301e1af2a512b1f8c))
+
+
+### Bug Fixes
+
+* upgraded versions.tf to include minor bumps from tpg v5 ([#84](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/84)) ([ac4548a](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/ac4548a28b2e8c616a5a1c291eeb643c79d30c05))
+
 ## [2.3.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.2.1...v2.3.0) (2022-12-29)
 
 
