@@ -34,7 +34,7 @@ resource "google_bigquery_table" "example_table" {
 
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   topic      = "example-topic"
   project_id = var.project
