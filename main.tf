@@ -100,7 +100,7 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
           schema_type               = lookup(stream_configs.value.bigquery_destination.schema_config, "schema_type", null)
           recursive_structure_depth = stream_configs.value.bigquery_destination.schema_config.recursive_structure_depth
 
-          dynamic last_updated_partition_config {
+          dynamic "last_updated_partition_config" {
             for_each = lookup(stream_configs.value.bigquery_destination.schema_config, "last_updated_partition_config", null) != null ? [stream_configs.value.bigquery_destination.schema_config.last_updated_partition_config] : []
             content {
               type          = last_updated_partition_config.value.type
