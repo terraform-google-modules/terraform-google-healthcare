@@ -7,6 +7,18 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.4.0...v2.5.0) (2024-02-23)
+
+
+### Features
+
+* add support for enableHistoryModifications ([#93](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/93)) ([34670c9](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/34670c9edff1b0cad3947b1477b3d97c645c9d4d))
+
+
+### Bug Fixes
+
+* Correct lastUpdatedPartitionConfig as Optional in Terraform ([#98](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/98)) ([2e76a5f](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/2e76a5f24ad569ff5da899e00bbf013b2676b967))
+
 ## [2.4.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.3.0...v2.4.0) (2023-11-03)
 
 
