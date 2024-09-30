@@ -42,7 +42,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v0.13
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v4.76.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v6.4.0
 
 ### Service Account
 
@@ -54,6 +54,7 @@ the resources of this module:
 - Healthcare FHIR Admin: `roles/healthcare.fhirStoreAdmin`
 - Healthcare HL7 V2 Admin: `roles/healthcare.hl7V2StoreAdmin`
 - Healthcare Consent Admin: `roles/healthcare.ConsentStoreAdmin`
+- Healthcare Data Mapper Workspace Admin: `roles/healthcare.dataMapperWorkspaceAdmin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -91,6 +92,7 @@ provision a project with the necessary APIs enabled.
 | name | The resource name for the Dataset. | `string` | n/a | yes |
 | project | The ID of the project in which the resource belongs. | `string` | n/a | yes |
 | time\_zone | The default timezone used by this dataset. | `string` | `null` | no |
+| workspaces | Workspace (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/manage-workspaces) that holds all mappings and the Data Mapper IDE for organizing and controlling access. | `any` | `[]` | no |
 
 ## Outputs
 

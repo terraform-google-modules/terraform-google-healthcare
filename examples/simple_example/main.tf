@@ -34,7 +34,7 @@ resource "google_bigquery_table" "example_table" {
 
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   topic      = "example-topic"
   project_id = var.project
@@ -46,7 +46,7 @@ locals {
 }
 
 module "healthcare" {
-  source  = "terraform-google-modules/healthcare/google"
+  source  = "../.."
   version = "~> 2.0"
 
   name     = "example-healthcare-dataset"
@@ -142,6 +142,14 @@ module "healthcare" {
         role   = "roles/healthcare.consentEditor"
         member = local.sa_member
       }]
+    }
+  ]
+  workspaces = [
+    {
+      name                            = "example-workspace"
+      settings = {
+        data_project_ids = [var.project]
+      }
     }
   ]
 }

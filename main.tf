@@ -153,3 +153,17 @@ resource "google_healthcare_consent_store" "consent_stores" {
   enable_consent_create_on_update = lookup(each.value, "enable_consent_create_on_update", null)
   default_consent_ttl             = lookup(each.value, "default_consent_ttl", null)
 }
+
+resource "google_healthcare_workspace" "workspaces" {
+  for_each = {
+    for s in var.workspaces :
+    s.name => s
+  }
+
+  name                            = each.value.name
+  dataset                         = google_healthcare_dataset.dataset.id
+  labels                          = lookup(each.value, "labels", null)
+  settings                        {
+    data_project_ids = lookup(each.value, "data_project_ids", [])
+  }
+}
