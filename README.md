@@ -92,7 +92,7 @@ provision a project with the necessary APIs enabled.
 | name | The resource name for the Dataset. | `string` | n/a | yes |
 | project | The ID of the project in which the resource belongs. | `string` | n/a | yes |
 | time\_zone | The default timezone used by this dataset. | `string` | `null` | no |
-| workspaces | Workspace (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/manage-workspaces) that holds all mappings and the Data Mapper IDE for organizing and controlling access. | `any` | `[]` | no |
+| workspaces | Workspace that holds all mappings and the Data Mapper IDE for organizing and controlling access (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/manage-workspaces). | <pre>list(object({<br>    name    = string<br>    dataset = string<br>    labels  = map(string)<br>    settings = object({<br>      data_project_ids = list(string)<br>    })<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 

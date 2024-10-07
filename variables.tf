@@ -104,7 +104,14 @@ variable "consent_stores" {
 #  settings: object (required)
 #    data_project_ids: list(string)
 variable "workspaces" {
-  type        = any
+  type = list(object({
+    name    = string
+    dataset = string
+    labels  = map(string)
+    settings = object({
+      data_project_ids = list(string)
+    })
+  }))
   description = "Workspace that holds all mappings and the Data Mapper IDE for organizing and controlling access (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/manage-workspaces)."
   default     = []
 }
