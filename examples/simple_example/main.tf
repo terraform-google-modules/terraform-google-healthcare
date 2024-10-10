@@ -147,6 +147,7 @@ module "healthcare" {
   workspaces = [
     {
       name                            = "example-workspace"
+      dataset                         = "example-dataset"
       settings = {
         data_project_ids = [var.project]
       }

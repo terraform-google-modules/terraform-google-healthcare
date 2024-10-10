@@ -107,7 +107,7 @@ variable "workspaces" {
   type = list(object({
     name    = string
     dataset = string
-    labels  = map(string)
+    labels  = optional(map(string))
     settings = object({
       data_project_ids = list(string)
     })
