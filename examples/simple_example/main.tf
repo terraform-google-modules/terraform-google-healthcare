@@ -46,7 +46,7 @@ locals {
 }
 
 module "healthcare" {
-  source  = "../.."
+  source  = "terraform-google-modules/healthcare/google"
   version = "~> 2.0"
 
   name     = "example-healthcare-dataset"
