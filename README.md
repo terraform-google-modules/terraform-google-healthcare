@@ -42,7 +42,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v0.13
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v4.76.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v6.6.0
 
 ### Service Account
 
@@ -54,6 +54,9 @@ the resources of this module:
 - Healthcare FHIR Admin: `roles/healthcare.fhirStoreAdmin`
 - Healthcare HL7 V2 Admin: `roles/healthcare.hl7V2StoreAdmin`
 - Healthcare Consent Admin: `roles/healthcare.ConsentStoreAdmin`
+- Healthcare Pipeline Jobs Admin: `roles/healthcare.pipelineJobsAdmin`
+- Bigquery Data Viewer: `roles/bigquery.dataViewer`
+- Cloud Storage Object Viewer: `roles/storage.objectViewer`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -89,6 +92,7 @@ provision a project with the necessary APIs enabled.
 | iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | <pre>list(object({<br>    role   = string<br>    member = string<br>  }))</pre> | `[]` | no |
 | location | The location for the Dataset. | `string` | n/a | yes |
 | name | The resource name for the Dataset. | `string` | n/a | yes |
+| pipeline\_jobs | Extra fields for pipeline jobs: reconciliation\_pipeline\_job: object (optional) mapping\_pipeline\_job: object (optional) | <pre>list(object({<br>    name    = string<br>    location = string<br>    dataset = string<br>    disable_lineage = bool    <br>    labels  = map(string)<br>    backfill_pipeline_job = object({<br>        mapping_pipeline_job = string<br>    })}))</pre> | `[]` | no |
 | project | The ID of the project in which the resource belongs. | `string` | n/a | yes |
 | time\_zone | The default timezone used by this dataset. | `string` | `null` | no |
 

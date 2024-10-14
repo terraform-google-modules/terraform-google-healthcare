@@ -99,3 +99,19 @@ variable "consent_stores" {
   description = "Datastore that contain all information related to the configuration and operation of the Consent Management API (https://cloud.google.com/healthcare/docs/how-tos/consent-managing)."
   default     = []
 }
+
+# Extra fields for pipeline jobs:
+# reconciliation_pipeline_job: object (optional)
+# mapping_pipeline_job: object (optional)
+variable "pipeline_jobs" {
+  type = list(object({
+    name    = string
+    location = string
+    dataset = string
+    disable_lineage = bool    
+    labels  = map(string)
+    backfill_pipeline_job = object({
+        mapping_pipeline_job = string
+    })}))
+  default     = []
+}

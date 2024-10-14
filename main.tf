@@ -153,3 +153,26 @@ resource "google_healthcare_consent_store" "consent_stores" {
   enable_consent_create_on_update = lookup(each.value, "enable_consent_create_on_update", null)
   default_consent_ttl             = lookup(each.value, "default_consent_ttl", null)
 }
+
+resource "google_healthcare_pipeline_job" "pipeline_jobs" {
+  for_each = {
+    for s in var.pipeline_jobs :
+    s.name => s
+  }
+
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
+  labels  = lookup(each.value, "labels", null) 
+  dynamic "reconciliation_pipeline_job" {
+    for_each = lookup(each.value, "reconciliation_pipeline_job", [])
+    merge_config {
+      description = lookup(reconciliation_pipeline_job.value, "description", null)
+      whistle_config_source {
+        uri = lookup(reconciliation_pipeline_job.value, "uri", null)
+        import_uri_prefix = lookup(reconciliation_pipeline_job.value, "import_uri_prefix", null)
+      }
+    }
+    matching_uri_prefix = lookup(reconciliation_pipeline_job.value, "matching_uri_prefix", null)
+    fhir_store_destination = lookup(reconciliation_pipeline_job.value, "fhir_store_destination", null)
+  }
+}
