@@ -148,9 +148,9 @@ module "healthcare" {
     {
       name                   = "example-backfill-pipeline"
       dataset                = "example-dataset"
-      backfill_pipeline_job {
+      backfill_pipeline_job  = [{
         mapping_pipeline_job = "example-mapping-pipeline"
-      }
+      }]
     }
   ]
 }
