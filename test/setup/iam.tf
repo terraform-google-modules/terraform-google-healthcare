@@ -21,6 +21,7 @@ locals {
     "roles/healthcare.dicomStoreAdmin",
     "roles/healthcare.fhirStoreAdmin",
     "roles/healthcare.hl7V2StoreAdmin",
+    "roles/healthcare.dataMapperWorkspaceAdmin",
     "roles/iam.serviceAccountAdmin",
     "roles/pubsub.admin",
     "roles/bigquery.dataEditor",
