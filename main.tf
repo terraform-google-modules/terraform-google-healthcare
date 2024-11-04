@@ -154,6 +154,20 @@ resource "google_healthcare_consent_store" "consent_stores" {
   default_consent_ttl             = lookup(each.value, "default_consent_ttl", null)
 }
 
+resource "google_healthcare_workspace" "workspaces" {
+  for_each = {
+    for s in var.workspaces :
+    s.name => s
+  }
+
+  name    = each.value.name
+  dataset = google_healthcare_dataset.dataset.id
+  labels  = lookup(each.value, "labels", null)
+  settings {
+    data_project_ids = lookup(each.value, "data_project_ids", [])
+  }
+}
+
 resource "google_healthcare_pipeline_job" "pipeline_jobs" {
   for_each = {
     for s in var.pipeline_jobs :

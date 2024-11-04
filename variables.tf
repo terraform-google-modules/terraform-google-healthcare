@@ -100,6 +100,22 @@ variable "consent_stores" {
   default     = []
 }
 
+# Extra fields for workspaces:
+#  settings: object (required)
+#    data_project_ids: list(string)
+variable "workspaces" {
+  type = list(object({
+    name    = string
+    dataset = string
+    labels  = optional(map(string))
+    settings = object({
+      data_project_ids = list(string)
+    })
+  }))
+  description = "Workspace that holds all mappings and the Data Mapper IDE for organizing and controlling access (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/manage-workspaces)."
+  default     = []
+}
+
 # Extra fields for pipeline jobs:
 # reconciliation_pipeline_job: object (optional)
 # mapping_pipeline_job: object (optional)
