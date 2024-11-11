@@ -126,8 +126,36 @@ variable "pipeline_jobs" {
     dataset = string
     disable_lineage = bool    
     labels  = map(string)
-    backfill_pipeline_job = object({
+
+    backfill_pipeline_job = optional(object({
         mapping_pipeline_job = string
-    })}))
+    }))
+
+    reconciliation_pipeline_job = optional(object({
+        merge_config = object({
+          whistle_config_source = object({
+            uri = string
+            import_uri_prefix = string
+          })
+        })
+        matching_uri_prefix = string
+        fhir_store_destination = string
+    }))
+
+    mapping_pipeline_job = optional(object({
+        mapping_config = object({
+          whistle_config_source = object({
+            uri = string
+            import_uri_prefix = string
+          })
+        })
+        fhir_streaming_source = object({
+          fhir_store = string
+        })
+        fhir_store_destination = string
+
+    }))
+    
+    }))
   default     = []
 }
