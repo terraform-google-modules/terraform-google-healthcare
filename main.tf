@@ -189,4 +189,24 @@ resource "google_healthcare_pipeline_job" "pipeline_jobs" {
     matching_uri_prefix = lookup(reconciliation_pipeline_job.value, "matching_uri_prefix", null)
     fhir_store_destination = lookup(reconciliation_pipeline_job.value, "fhir_store_destination", null)
   }
+
+  dynamic "backfill_pipeline_job" {
+    for_each = lookup(each.value, "backfill_pipeline_job", [])
+    mapping_pipeline_job = lookup(backfill_pipeline_job.value, "mapping_pipeline_job", null)
+  }
+
+  dynamic "mapping_pipeline_job" {
+    for_each = lookup(each.value, "mapping_pipeline_job", [])
+    mapping_config {
+      whistle_config_source {
+        uri = lookup(mapping_pipeline_job.value, "uri", null)
+        import_uri_prefix = lookup(mapping_pipeline_job.value, "import_uri_prefix", null)
+      }
+      description = lookup(mapping_pipeline_job.value, "description", null)
+    }
+    fhir_streaming_source {
+      fhir_store = lookup(mapping_pipeline_job.value, "fhir_store", null)
+    }
+    fhir_store_destination = lookup(mapping_pipeline_job.value, "fhir_store_destination", null)
+  }
 }
