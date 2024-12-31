@@ -114,7 +114,7 @@ variable "workspaces" {
 # mapping_pipeline_job: object (optional)
 # backfill_pipeline_job: object (optional)
 variable "pipeline_jobs" {
-  type = any
-  description = "Mapping and reconciliation pipelines to create a longitudinal patient record within a harmonized FHIR store. (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/pipelines)."  
+  type        = any
+  description = "Mapping and reconciliation pipelines to create a longitudinal patient record within a harmonized FHIR store. (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/pipelines)."
   default     = []
 }
