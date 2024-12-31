@@ -176,7 +176,7 @@ resource "google_healthcare_pipeline_job" "pipeline_jobs" {
 
   name    = each.value.name
   dataset = google_healthcare_dataset.dataset.id
-  labels  = lookup(each.value, "labels", null) 
+  labels  = lookup(each.value, "labels", null)
   disable_lineage = lookup(each.value, "disable_lineage", null)
   dynamic "reconciliation_pipeline_job" {
     for_each = lookup(each.value, "reconciliation_pipeline_job", [])
