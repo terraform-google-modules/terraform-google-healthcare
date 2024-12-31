@@ -164,7 +164,7 @@ resource "google_healthcare_workspace" "workspaces" {
   dataset = google_healthcare_dataset.dataset.id
   labels  = lookup(each.value, "labels", null)
   settings {
-    data_project_ids = lookup(each.value, "data_project_ids", [])
+    data_project_ids = lookup(each.value.settings, "data_project_ids", [])
   }
 }
 
