@@ -29,4 +29,4 @@ module "healthcare" {
 
 ## Minimum Google Provider versions
 
-Minimum Google Provider versions have been updated to 6.6
+Minimum Google Provider versions have been updated to 6.5
