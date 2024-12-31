@@ -93,10 +93,10 @@ provision a project with the necessary APIs enabled.
 | iam\_members | Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved. | <pre>list(object({<br>    role   = string<br>    member = string<br>  }))</pre> | `[]` | no |
 | location | The location for the Dataset. | `string` | n/a | yes |
 | name | The resource name for the Dataset. | `string` | n/a | yes |
+| pipeline\_jobs | Mapping and reconciliation pipelines to create a longitudinal patient record within a harmonized FHIR store. (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/pipelines). | `any` | `[]` | no |
 | project | The ID of the project in which the resource belongs. | `string` | n/a | yes |
 | time\_zone | The default timezone used by this dataset. | `string` | `null` | no |
 | workspaces | Workspace that holds all mappings and the Data Mapper IDE for organizing and controlling access (https://cloud.google.com/healthcare-api/healthcare-data-engine/docs/manage-workspaces). | `any` | `[]` | no |
-| pipeline\_jobs | Extra fields for pipeline jobs: reconciliation\_pipeline\_job: object (optional) mapping\_pipeline\_job: object (optional) | <pre>list(object({<br>    name    = string<br>    location = string<br>    dataset = string<br>    disable_lineage = bool    <br>    labels  = map(string)<br>    backfill_pipeline_job = object({<br>        mapping_pipeline_job = string<br>    })}))</pre> | `[]` | no |
 
 ## Outputs
 

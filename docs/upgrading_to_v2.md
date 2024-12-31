@@ -1,6 +1,6 @@
-# Upgrading to v2.0
+# Upgrading to v2.5.0
 
-The v2.0 release of *healthcare* is a backwards incompatible release.
+The v2.5.0 release of *healthcare* is a backwards incompatible release.
 
 ## Pipeline Jobs
 
@@ -9,7 +9,7 @@ The GA API enables creation of HDE Pipeline Jobs.
 ```
 module "healthcare" {
     source  = "terraform-google-modules/healthcare/google"
-    version = "~> 2.0"
+    version = "~> 2.5.0"
 
     name     = "example-dataset"
     project  = "example-project"
