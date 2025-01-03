@@ -1,7 +1,5 @@
 # Upgrading to v2.5.0
 
-The v2.5.0 release of *healthcare* is a backwards incompatible release.
-
 ## Pipeline Jobs
 
 The GA API enables creation of HDE Pipeline Jobs.
@@ -29,4 +27,4 @@ module "healthcare" {
 
 ## Minimum Google Provider versions
 
-Minimum Google Provider versions have been updated to 6.5
+Minimum Google Provider versions have been updated to 6.5.0
