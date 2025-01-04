@@ -25,6 +25,8 @@ locals {
     "roles/iam.serviceAccountAdmin",
     "roles/pubsub.admin",
     "roles/bigquery.dataEditor",
+    "roles/healthcare.pipelineJobsAdmin",
+    "roles/storage.objectViewer",
     "roles/resourcemanager.projectIamAdmin"
   ]
 }
