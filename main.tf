@@ -215,7 +215,7 @@ resource "google_healthcare_pipeline_job" "pipeline_jobs" {
       fhir_streaming_source {
         fhir_store = lookup(mapping_pipeline_job.value.fhir_streaming_source, "fhir_store", null)
       }
-      fhir_store_destination = lookup(mapping_pipeline_job.value, "fhir_store_destination", null)
+      fhir_store_destination     = lookup(mapping_pipeline_job.value, "fhir_store_destination", null)
       reconciliation_destination = lookup(mapping_pipeline_job.value, "reconciliation_destination", null)
     }
   }
