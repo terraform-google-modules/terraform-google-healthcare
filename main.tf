@@ -167,3 +167,56 @@ resource "google_healthcare_workspace" "workspaces" {
     data_project_ids = lookup(each.value.settings, "data_project_ids", [])
   }
 }
+
+resource "google_healthcare_pipeline_job" "pipeline_jobs" {
+  for_each = {
+    for s in var.pipeline_jobs :
+    s.name => s
+  }
+
+  name            = each.value.name
+  dataset         = google_healthcare_dataset.dataset.id
+  location        = var.location
+  labels          = lookup(each.value, "labels", null)
+  disable_lineage = lookup(each.value, "disable_lineage", null)
+
+  dynamic "reconciliation_pipeline_job" {
+    for_each = lookup(each.value, "reconciliation_pipeline_job", null) != null ? [each.value.reconciliation_pipeline_job] : []
+    content {
+      merge_config {
+        description = lookup(reconciliation_pipeline_job.value, "description", null)
+        whistle_config_source {
+          uri               = lookup(reconciliation_pipeline_job.value.merge_config.whistle_config_source, "uri", null)
+          import_uri_prefix = lookup(reconciliation_pipeline_job.value.merge_config.whistle_config_source, "import_uri_prefix", null)
+        }
+      }
+      matching_uri_prefix    = lookup(reconciliation_pipeline_job.value, "matching_uri_prefix", null)
+      fhir_store_destination = lookup(reconciliation_pipeline_job.value, "fhir_store_destination", null)
+    }
+  }
+
+  dynamic "backfill_pipeline_job" {
+    for_each = lookup(each.value, "backfill_pipeline_job", null) != null ? [each.value.backfill_pipeline_job] : []
+    content {
+      mapping_pipeline_job = lookup(backfill_pipeline_job.value, "mapping_pipeline_job", null)
+    }
+  }
+
+  dynamic "mapping_pipeline_job" {
+    for_each = lookup(each.value, "mapping_pipeline_job", null) != null ? [each.value.mapping_pipeline_job] : []
+    content {
+      mapping_config {
+        whistle_config_source {
+          uri               = lookup(mapping_pipeline_job.value.mapping_config.whistle_config_source, "uri", null)
+          import_uri_prefix = lookup(mapping_pipeline_job.value.mapping_config.whistle_config_source, "import_uri_prefix", null)
+        }
+        description = lookup(mapping_pipeline_job.value.mapping_config, "description", null)
+      }
+      fhir_streaming_source {
+        fhir_store = lookup(mapping_pipeline_job.value.fhir_streaming_source, "fhir_store", null)
+      }
+      fhir_store_destination     = lookup(mapping_pipeline_job.value, "fhir_store_destination", null)
+      reconciliation_destination = lookup(mapping_pipeline_job.value, "reconciliation_destination", null)
+    }
+  }
+}
