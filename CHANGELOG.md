@@ -7,6 +7,25 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.4.0...v3.0.0) (2025-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=6.6:** Add HDE Pipeline Jobs creation support  ([#115](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/115))
+
+### Features
+
+* add Data Mapper Workspace resource support ([#109](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/109)) ([95014e2](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/95014e2c983f6b87c877e27135ce75ff7059fc20))
+* add support for enableHistoryModifications ([#93](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/93)) ([34670c9](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/34670c9edff1b0cad3947b1477b3d97c645c9d4d))
+* **TPG>=6.6:** Add HDE Pipeline Jobs creation support  ([#115](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/115)) ([0e21297](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/0e21297f7b0bc928be5e225d0d2b3301012aed5d))
+
+
+### Bug Fixes
+
+* Change lookup of data_project_ids in module definition ([#113](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/113)) ([ab69f2a](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/ab69f2aaba85cbfadb7941e243b6ac867f4e9742))
+* Correct lastUpdatedPartitionConfig as Optional in Terraform ([#98](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/98)) ([2e76a5f](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/2e76a5f24ad569ff5da899e00bbf013b2676b967))
+
 ## [2.4.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.3.0...v2.4.0) (2023-11-03)
 
 
