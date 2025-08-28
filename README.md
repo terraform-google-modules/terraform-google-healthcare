@@ -9,7 +9,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "healthcare" {
   source  = "terraform-google-modules/healthcare/google"
-  version = "~> 3.0"
+  version = "~> 3.1"
 
   project  = "<PROJECT_ID>"
   name     = "example-dataset"

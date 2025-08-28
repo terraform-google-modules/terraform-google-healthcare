@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v3.0.0...v3.1.0) (2025-08-28)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v7 (major) ([#123](https://github.com/terraform-google-modules/terraform-google-healthcare/issues/123)) ([271bcfd](https://github.com/terraform-google-modules/terraform-google-healthcare/commit/271bcfdcdd3c45df6687953a8465b471754160d9))
+
 ## [3.0.0](https://github.com/terraform-google-modules/terraform-google-healthcare/compare/v2.4.0...v3.0.0) (2025-06-10)
 
 
