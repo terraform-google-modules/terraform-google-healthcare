@@ -110,6 +110,17 @@ resource "google_healthcare_fhir_store" "fhir_stores" {
       }
     }
   }
+
+  dynamic "validation_config" {
+    for_each = lookup(each.value, "validation_config", null) != null ? [each.value.validation_config] : []
+    content {
+      disable_profile_validation        = lookup(validation_config.value, "disable_profile_validation", null)
+      enabled_implementation_guides     = lookup(validation_config.value, "enabled_implementation_guides", null)
+      disable_required_field_validation = lookup(validation_config.value, "disable_required_field_validation", null)
+      disable_reference_type_validation = lookup(validation_config.value, "disable_reference_type_validation", null)
+      disable_fhirpath_validation       = lookup(validation_config.value, "disable_fhirpath_validation", null)
+    }
+  }
 }
 
 resource "google_healthcare_hl7_v2_store" "hl7_v2_stores" {
